@@ -1,5 +1,16 @@
 @import "../../scss/index.scss";
 
+h1 {
+  color: $font-dark;
+  font-size: 1.5rem;
+  font-family: "Roboto", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  h1 {
+    color: $font-ligth;
+  }
+}
+
 .background-principal {
   background: $background-principal;
   min-height: 100vh;
@@ -20,9 +31,9 @@
   align-items: center;
 
   &__box {
-    min-width: 400px;
-    min-height: 400px;
-    background-color: green;
+    min-width: 450px;
+    min-height: 450px;
+    //background-color: green;
     display: flex;
     justify-content: center;
     align-items: center;
