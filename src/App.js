@@ -3,7 +3,12 @@ import Auth from "./pages/Auth";
 import "./App.scss";
 import firebase from "./utils/Firebase";
 import "firebase/auth";
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 const Login = () => {
   return (
     <div
@@ -29,22 +34,25 @@ function App() {
   const [user, setUser] = useState(null);
 
   firebase.auth().onAuthStateChanged((cliente) => {
-    if (cliente) {
-      setUser(cliente);
-    } else {
+    if (!cliente?.emailVerified) {
+      firebase.auth().signOut();
       setUser(null);
+    } else {
+      setUser(cliente);
     }
   });
 
-  const handlerInterface = () => {
-    if (!user) {
-      return <Auth />;
-    }
+  return (
+    <>
+      <Switch>
+        <Route exact path="/home">
+          <Login />
+        </Route>
+      </Switch>
 
-    return <Login />;
-  };
-
-  return <>{handlerInterface()}</>;
+      {!user ? <Auth /> : <Redirect to="/Home" />}
+    </>
+  );
 }
 
 export default App;
