@@ -4,11 +4,15 @@ import Button from "@material-ui/core/Button";
 import RegisterForm from "../../components/RegisterForm";
 import LoginForm from "../../components/LoginForm";
 import "./AuthForm.scss";
+import Container from '@material-ui/core/Container';
 
-export default function AuthForm() {
+export default function AuthForm(props) {
   //Hook para abrir el registro
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+
+  const {user} = props;
+
   const handlerDialog = () => {
     setOpen(!open);
   };
@@ -16,7 +20,7 @@ export default function AuthForm() {
     setOpen2(!open2);
   };
   return (
-    <div>
+      <div>
       <Grid container>
         <Grid item xs={12} md={6} className="background-principal"></Grid>
         <Grid item xs={12} md={6} className="background-secundario">
@@ -51,9 +55,9 @@ export default function AuthForm() {
           </div>
         </Grid>
       </Grid>
-
+      
       <RegisterForm open={open} setOpen={setOpen} />
       <LoginForm open={open2} setOpen={setOpen2} />
-    </div>
+    </div>  
   );
 }

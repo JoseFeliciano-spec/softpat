@@ -3,13 +3,40 @@ import Auth from "./pages/Auth";
 import "./App.scss";
 import firebase from "./utils/Firebase";
 import "firebase/auth";
+import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
-const Login = () => {
+
+const salir = () => {
+  firebase.auth().signOut();
+};
+
+function App() {
+  const [user, setUser] = useState(null);
+
+  firebase.auth().onAuthStateChanged((cliente) => {
+    if (cliente?.emailVerified) {
+      setUser(cliente);
+    }else{
+      firebase.auth().signOut();
+      setUser(null);
+    }
+  });
+
+  
+  return (
+    <div>
+        {!user ?   <Auth/> : <Login/> }
+        
+    </div>
+  );
+}
+
+function Login(){
   return (
     <div
       style={{
@@ -24,35 +51,7 @@ const Login = () => {
       <button onClick={salir}>Cerrar sesión</button>
     </div>
   );
-};
-
-const salir = () => {
-  firebase.auth().signOut();
-};
-
-function App() {
-  const [user, setUser] = useState(null);
-
-  firebase.auth().onAuthStateChanged((cliente) => {
-    if (!cliente?.emailVerified) {
-      firebase.auth().signOut();
-      setUser(null);
-    } else {
-      setUser(cliente);
-    }
-  });
-
-  return (
-    <>
-      <Switch>
-        <Route exact path="/home">
-          <Login />
-        </Route>
-      </Switch>
-
-      {!user ? <Auth /> : <Redirect to="/Home" />}
-    </>
-  );
 }
+
 
 export default App;

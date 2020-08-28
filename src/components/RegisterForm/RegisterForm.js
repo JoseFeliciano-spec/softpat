@@ -98,7 +98,7 @@ export default function RegisterForm(props) {
   };
 
   return (
-    <>
+    <div>
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -189,7 +189,7 @@ export default function RegisterForm(props) {
           </div>
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   );
 }
 
