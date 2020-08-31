@@ -3,12 +3,15 @@ import Auth from "./pages/Auth";
 import "./App.scss";
 import firebase from "./utils/Firebase";
 import "firebase/auth";
+import ReactDOM from "react-dom";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
+
 const Login = () => {
   return (
     <div
@@ -26,6 +29,22 @@ const Login = () => {
   );
 };
 
+const Load = () => {
+  return (
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        flexDirection: "column",
+      }}
+    >
+      <CircularProgress />
+    </div>
+  );
+};
+
 const salir = () => {
   firebase.auth().signOut();
 };
@@ -34,23 +53,21 @@ function App() {
   const [user, setUser] = useState(null);
 
   firebase.auth().onAuthStateChanged((cliente) => {
-    if (!cliente?.emailVerified) {
+    if (cliente?.emailVerified) {
+      setUser(cliente);
+      console.log("usuario logeado");
+      ReactDOM.render(<Login user={user} />, document.getElementById("root"));
+    } else if (!cliente?.emailVerified) {
       firebase.auth().signOut();
       setUser(null);
-    } else {
-      setUser(cliente);
+      console.log("usuario no logeado");
+      ReactDOM.render(<Auth />, document.getElementById("root"));
     }
   });
 
   return (
     <>
-      <Switch>
-        <Route exact path="/home">
-          <Login />
-        </Route>
-      </Switch>
-
-      {!user ? <Auth /> : <Redirect to="/Home" />}
+      {/* {!user ? <Auth /> : <Login />} */} <Load />{" "}
     </>
   );
 }

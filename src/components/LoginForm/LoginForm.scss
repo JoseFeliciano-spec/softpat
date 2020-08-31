@@ -20,11 +20,11 @@ h2 {
   }
 }
 
-.background-registro {
+.background-login {
   background: $background-light !important;
 }
 @media (prefers-color-scheme: dark) {
-  .background-registro {
+  .background-login {
     background: $background-dark !important;
   }
 }
@@ -65,7 +65,7 @@ h2 {
   }
 }
 
-.boton-registro {
+.boton-login {
   padding: 0.8rem !important;
   background: $background-principal !important;
   border-radius: 20rem !important;

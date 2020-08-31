@@ -71,7 +71,7 @@ export default function LoginForm(props) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogContent className="background-registro">
+        <DialogContent className="background-login">
           <div className="container">
             <div className="row">
               <div className="col-12">
@@ -80,7 +80,7 @@ export default function LoginForm(props) {
                 </IconButton>
               </div>
               <div className="col-12">
-                <h2 className="text-center">Registro</h2>
+                <h2 className="text-center">Iniciar sesión</h2>
               </div>
             </div>
           </div>
@@ -131,11 +131,8 @@ export default function LoginForm(props) {
               </div>
 
               <div className="col-12">
-                <Button
-                  onClick={onSubmit}
-                  className="w-100 boton-registro mb-5"
-                >
-                  Regístrarte
+                <Button onClick={onSubmit} className="w-100 boton-login mb-5">
+                  Iniciar sesión
                 </Button>
               </div>
             </div>

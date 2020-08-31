@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+}
+.fondo {
+  background: #ffff;
+  height: 100vh;
+}
+@media (prefers-color-scheme: dark) {
+  .fondo {
+    background: #202020;
+  }
+}
