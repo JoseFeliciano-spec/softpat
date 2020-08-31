@@ -2,12 +2,18 @@
     
 */
 
-import React from "react";
+import React,{useState} from "react";
 import AuthForm from "../../components/AuthForm";
+import 'firebase/auth';
+import firebase from '../../utils/Firebase';
 export default function Auth() {
+  
+
   return (
-    <div>
-      <AuthForm />
-    </div>
+    <>
+      <AuthForm/>
+    </>
   );
 }
+
+

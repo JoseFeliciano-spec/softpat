@@ -54,7 +54,9 @@ export default function LoginForm(props) {
     if (ok) {
       firebase
         .auth()
-        .signInWithEmailAndPassword(dataForm.email, dataForm.password);
+        .signInWithEmailAndPassword(dataForm.email, dataForm.password).then(()=>{
+        }
+        );
     }
   };
 
@@ -63,7 +65,7 @@ export default function LoginForm(props) {
   };
 
   return (
-    <>
+    <div>
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -139,7 +141,7 @@ export default function LoginForm(props) {
           </div>
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   );
 }
 
