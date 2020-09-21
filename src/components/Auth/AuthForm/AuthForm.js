@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import RegisterForm from "../../components/RegisterForm";
-import LoginForm from "../../components/LoginForm";
+import RegisterForm from "../RegisterForm";
+import LoginForm from "../LoginForm";
 import "./AuthForm.scss";
-import Container from '@material-ui/core/Container';
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
-export default function AuthForm(props) {
+export default function AuthForm() {
   //Hook para abrir el registro
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
 
-  const {user} = props;
-
   const handlerDialog = () => {
     setOpen(!open);
+    toast.success("Entrando al menú de registro");
   };
   const handlerDialog2 = () => {
     setOpen2(!open2);
+    toast.success("Entrando al menú de login");
   };
+
   return (
-      <div>
+    <div>
       <Grid container>
         <Grid item xs={12} md={6} className="background-principal"></Grid>
         <Grid item xs={12} md={6} className="background-secundario">
@@ -55,9 +57,20 @@ export default function AuthForm(props) {
           </div>
         </Grid>
       </Grid>
-      
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={6000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <RegisterForm open={open} setOpen={setOpen} />
       <LoginForm open={open2} setOpen={setOpen2} />
-    </div>  
+    </div>
   );
 }

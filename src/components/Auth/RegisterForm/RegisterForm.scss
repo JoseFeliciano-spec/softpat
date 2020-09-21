@@ -1,15 +1,30 @@
-@import "../../scss/index.scss";
+@import "../../../scss/index.scss";
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+  transition: "color 9999s ease-out, background-color 9999s ease-out";
+  transition-delay: 99999s;
+}
 
 h2 {
   color: $font-dark;
 }
-
+.error-text {
+  color: $font-ligth;
+}
 @media (prefers-color-scheme: dark) {
   h2 {
     color: $font-ligth;
   }
 }
-
+@media screen and (min-width: 768px) {
+  .w-porcentaje {
+    width: 75% !important;
+  }
+}
 .color-icono {
   color: $font-dark !important;
 }
@@ -20,11 +35,11 @@ h2 {
   }
 }
 
-.background-login {
+.background-registro {
   background: $background-light !important;
 }
 @media (prefers-color-scheme: dark) {
-  .background-login {
+  .background-registro {
     background: $background-dark !important;
   }
 }
@@ -65,7 +80,7 @@ h2 {
   }
 }
 
-.boton-login {
+.boton-registro {
   padding: 0.8rem !important;
   background: $background-principal !important;
   border-radius: 20rem !important;

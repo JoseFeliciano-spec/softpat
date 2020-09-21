@@ -1,4 +1,4 @@
-@import "../../scss/index.scss";
+@import "../../../scss/index.scss";
 
 h2 {
   color: $font-dark;
@@ -10,6 +10,15 @@ h2 {
   }
 }
 
+.error-text {
+  color: $font-ligth;
+}
+
+@media screen and (min-width: 768px) {
+  .w-porcentaje {
+    width: 75% !important;
+  }
+}
 .color-icono {
   color: $font-dark !important;
 }
@@ -20,11 +29,11 @@ h2 {
   }
 }
 
-.background-registro {
+.background-login {
   background: $background-light !important;
 }
 @media (prefers-color-scheme: dark) {
-  .background-registro {
+  .background-login {
     background: $background-dark !important;
   }
 }
@@ -65,7 +74,7 @@ h2 {
   }
 }
 
-.boton-registro {
+.boton-login {
   padding: 0.8rem !important;
   background: $background-principal !important;
   border-radius: 20rem !important;

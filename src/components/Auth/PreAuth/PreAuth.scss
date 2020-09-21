@@ -1,0 +1,14 @@
+@import "../../../scss/index.scss";
+
+.pre-auth {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__spinner {
+    color: red !important;
+    width: 110px !important;
+    height: 110px !important;
+  }
+}
