@@ -5,7 +5,8 @@ import RegisterForm from "../RegisterForm";
 import LoginForm from "../LoginForm";
 import "./AuthForm.scss";
 import { ToastContainer } from "react-toastify";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
+//import { setEmail, getEmail } from "../../../utils/ema../../../utils/email";
 
 export default function AuthForm() {
   //Hook para abrir el registro
@@ -14,11 +15,9 @@ export default function AuthForm() {
 
   const handlerDialog = () => {
     setOpen(!open);
-    toast.success("Entrando al menú de registro");
   };
   const handlerDialog2 = () => {
     setOpen2(!open2);
-    toast.success("Entrando al menú de login");
   };
 
   return (
@@ -69,7 +68,7 @@ export default function AuthForm() {
         draggable
         pauseOnHover
       />
-      <RegisterForm open={open} setOpen={setOpen} />
+      <RegisterForm open={open} setOpen={setOpen} setOpen2={setOpen2} />
       <LoginForm open={open2} setOpen={setOpen2} />
     </div>
   );

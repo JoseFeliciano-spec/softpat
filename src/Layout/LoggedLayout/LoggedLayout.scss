@@ -1,0 +1,58 @@
+@import "../../scss/index.scss";
+.app-bar-f {
+  background: $background-principal !important;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.appbar {
+  min-height: 9.5vh !important;
+}
+
+.bottombar {
+  top: auto !important;
+  bottom: 0 !important;
+}
+.pieBar {
+  min-height: 9.5vh !important;
+}
+
+.primero {
+  max-height: 9.5vh !important;
+}
+.segundo {
+  background: $background-light;
+  min-height: 91vh !important;
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .segundo {
+    //background: $background-dark;
+    background: green;
+  }
+}
+
+.posicionamiento {
+  margin-top: 12px !important;
+}
+.titulo {
+  flex-grow: 1;
+  margin-top: 12px !important;
+}
+.caja {
+  margin-top: 12px;
+}
+@media screen and (max-height: 710px) {
+  .posicionamiento {
+    margin-top: 0px !important;
+  }
+  .titulo {
+    flex-grow: 1;
+    margin-top: 0px !important;
+  }
+  .caja {
+    margin-top: 0px;
+  }
+}

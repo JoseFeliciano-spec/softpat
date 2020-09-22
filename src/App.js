@@ -6,7 +6,7 @@ import "firebase/auth";
 import ReactDOM from "react-dom";
 import PreAuth from "./components/Auth/PreAuth";
 import { ToastContainer } from "react-toastify";
-
+import LoggedLayout from "./Layout/LoggedLayout";
 /* import {
   BrowserRouter as Router,
   Switch,
@@ -39,18 +39,15 @@ function App() {
   setTimeout(() => {
     firebase.auth().onAuthStateChanged((cliente) => {
       if (cliente?.emailVerified) {
-        ReactDOM.unmountComponentAtNode(document.getElementById("root"));
         //setUser(cliente);
         console.log("usuario logeado");
         console.log(cliente);
         ReactDOM.render(
-          <Login user={cliente} />,
+          <LoggedLayout user={cliente} />,
           document.getElementById("root")
         );
       } else if (!cliente?.emailVerified) {
-        ReactDOM.unmountComponentAtNode(document.getElementById("root"));
         firebase.auth().signOut();
-        //setUser(null);
         console.log("usuario no logeado");
         ReactDOM.render(<Auth />, document.getElementById("root"));
       }

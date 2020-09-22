@@ -122,7 +122,7 @@ export default function LoginForm(props) {
               <div className="col-12">
                 <TextField
                   label="Correo electrónico"
-                  //id="outlined-margin-dense"
+                  id="outlined-margin-dense"
                   name="email"
                   className="mt-4 color-input w-100"
                   variant="outlined"

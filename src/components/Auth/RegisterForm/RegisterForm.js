@@ -17,13 +17,15 @@ import firebase from "../../../utils/Firebase";
 import "firebase/auth";
 import validarCorreo from "../../../utils/ValidarCorreo";
 import { toast } from "react-toastify";
+//import { setEmail } from "../../../utils/email";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function RegisterForm(props) {
-  const { open, setOpen } = props;
+  //Abrir y cerrar
+  const { open, setOpen, setOpen2 } = props;
 
   //Hook de cambiar ser visible la contraseña
   const [showPassword, setShowPassword] = useState(false);
@@ -45,10 +47,10 @@ export default function RegisterForm(props) {
 
   const onChange = (e) => {
     setDataForm({ ...dataForm, [e.target.name]: e.target.value });
-    console.log(dataForm);
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     let ok = true;
     let errors = {};
 
@@ -61,7 +63,7 @@ export default function RegisterForm(props) {
       ok = false;
     }
 
-    if (dataForm.nameu === " ") {
+    if (dataForm.nameu === "") {
       errors.nameu = true;
       ok = false;
     }
@@ -97,7 +99,14 @@ export default function RegisterForm(props) {
       .auth()
       .currentUser.sendEmailVerification()
       .then(() => {
-        toast.success("Se ha enviado el email correctamente");
+        toast.success("Se ha enviado el email de verificación correctamente");
+        toast.success("Se ha registrado el usuario.");
+        setOpen(!open);
+        //form.reset();
+        setDataForm(dataRegister());
+        setTimeout(() => {
+          setOpen2(true);
+        }, 100);
       })
       .catch(() => {
         toast.error("Error al enviar email");
@@ -141,6 +150,7 @@ export default function RegisterForm(props) {
                   className="mt-4 color-input w-100"
                   variant="outlined"
                   onChange={onChange}
+                  value={dataForm.email}
                 />
               </div>
               {formError.email && (
@@ -159,6 +169,7 @@ export default function RegisterForm(props) {
                     id="outlined-adornment-password"
                     onChange={onChange}
                     name="password"
+                    value={dataForm.password}
                     type={showPassword ? "text" : "password"}
                     endAdornment={
                       <InputAdornment position="end">
@@ -184,6 +195,7 @@ export default function RegisterForm(props) {
                 <TextField
                   label="Nombre"
                   //id="outlined-margin-dense"
+                  value={dataForm.nameu}
                   onChange={onChange}
                   className="color-input w-100 mt-4"
                   variant="outlined"
@@ -211,8 +223,8 @@ export default function RegisterForm(props) {
 
 function dataRegister() {
   return {
-    email: " ",
-    password: " ",
-    nameu: " ",
+    email: "",
+    password: "",
+    nameu: "",
   };
 }
