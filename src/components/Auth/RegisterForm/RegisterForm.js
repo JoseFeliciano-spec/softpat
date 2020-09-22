@@ -147,7 +147,7 @@ export default function RegisterForm(props) {
                   label="Correo electrónico"
                   //id="outlined-margin-dense"
                   name="email"
-                  className="mt-4 color-input w-100"
+                  className="mt-4 color-input-r w-100"
                   variant="outlined"
                   onChange={onChange}
                   value={dataForm.email}
@@ -159,7 +159,7 @@ export default function RegisterForm(props) {
               <div className="col-12">
                 <FormControl
                   variant="outlined"
-                  className="color-input mt-4 w-100"
+                  className="color-input-r mt-4 w-100"
                   label="Contraseña"
                 >
                   <InputLabel htmlFor="outlined-adornment-password">
@@ -197,7 +197,7 @@ export default function RegisterForm(props) {
                   //id="outlined-margin-dense"
                   value={dataForm.nameu}
                   onChange={onChange}
-                  className="color-input w-100 mt-4"
+                  className="color-input-r w-100 mt-4"
                   variant="outlined"
                   name="nameu"
                 />

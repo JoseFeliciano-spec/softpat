@@ -1,13 +1,23 @@
 @import "../../scss/index.scss";
 .app-bar-f {
-  background: $background-principal !important;
+  background: #e91e63 !important;
   display: flex;
   position: relative;
   align-items: center;
 }
+.MuiBottomNavigationAction-root {
+  color: $font-dark !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .MuiBottomNavigationAction-root {
+    color: $font-ligth !important;
+  }
+}
 
 .appbar {
   min-height: 9.5vh !important;
+  background: #00bcd4 !important;
 }
 
 .bottombar {
@@ -16,21 +26,25 @@
 }
 .pieBar {
   min-height: 9.5vh !important;
+  background: $background-light !important;
 }
-
+@media (prefers-color-scheme: dark) {
+  .pieBar {
+    background: $background-secondary-dark !important;
+  }
+}
 .primero {
   max-height: 9.5vh !important;
 }
 .segundo {
-  background: $background-light;
+  background: $background-light !important;
   min-height: 91vh !important;
-  width: 100%;
+  width: 100% !important;
 }
 
 @media (prefers-color-scheme: dark) {
   .segundo {
-    //background: $background-dark;
-    background: green;
+    background: $background-dark !important;
   }
 }
 

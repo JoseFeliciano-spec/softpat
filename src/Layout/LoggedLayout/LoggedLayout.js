@@ -9,12 +9,13 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import RestoreIcon from "@material-ui/icons/Restore";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import firebase from "../../utils/Firebase";
+import "firebase/auth";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -70,6 +71,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const salir = () => {
+  firebase.auth().signOut();
+};
+
 export default function LoggedLayout(props) {
   const { user } = props;
   console.log(user);
@@ -97,8 +102,8 @@ export default function LoggedLayout(props) {
             <Typography variant="h6" className="titulo">
               News
             </Typography>
-            <Button color="inherit" className="posicionamiento">
-              Login
+            <Button color="inherit" className="posicionamiento" onClick={salir}>
+              Salir
             </Button>
           </Toolbar>
         </AppBar>
@@ -124,7 +129,11 @@ export default function LoggedLayout(props) {
           <h1 className=" text-center mt-4">Hola</h1>
         </Grid>
         <AppBar position="fixed" color="primary" className="bottombar">
-          <BottomNavigation value={value} showLabels className="pieBar">
+          <BottomNavigation
+            value={value}
+            showLabels
+            className="pieBar shadow-lg rounded"
+          >
             <BottomNavigationAction
               onclick={() => {
                 setValue("/");

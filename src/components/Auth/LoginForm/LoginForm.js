@@ -124,7 +124,7 @@ export default function LoginForm(props) {
                   label="Correo electrónico"
                   id="outlined-margin-dense"
                   name="email"
-                  className="mt-4 color-input w-100"
+                  className="mt-4 color-input-l w-100"
                   variant="outlined"
                   onChange={onChange}
                 />
@@ -135,7 +135,7 @@ export default function LoginForm(props) {
               <div className="col-12">
                 <FormControl
                   variant="outlined"
-                  className="color-input mt-4 w-100"
+                  className="color-input-l mt-4 w-100"
                   label="Contraseña"
                 >
                   <InputLabel htmlFor="passwordLogin">Contra</InputLabel>

@@ -13,7 +13,13 @@ h2 {
   color: $font-dark;
 }
 .error-text {
-  color: $font-ligth;
+  color: $font-dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  .error-text {
+    color: $font-ligth;
+  }
 }
 @media (prefers-color-scheme: dark) {
   h2 {
@@ -55,28 +61,55 @@ h2 {
   }
 }
 
-.color-input {
+.color-input-r {
   input {
-    color: $font-ligth !important;
+    color: #202020 !important;
   }
 
   label.Mui-focused {
-    color: #afb9bd;
+    color: #404040 !important;
   }
   label {
-    color: #afb9bd;
+    color: #404040 !important;
   }
   .MuiInput-underline:after {
-    border-bottom-color: #afb9bd;
+    border-bottom-color: #404040 !important;
   }
   .MuiOutlinedInput-root fieldset {
-    border-color: #afb9bd;
+    border-color: #404040 !important;
   }
   .MuiOutlinedInput-root:hover fieldset {
-    border-color: #fff;
+    border-color: #202020 !important;
   }
   .MuiOutlinedInput-root.Mui-focused fieldset {
-    border-color: #fff;
+    border-color: #202020 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .color-input-r {
+    & input {
+      color: $font-ligth !important;
+    }
+
+    label.Mui-focused {
+      color: #afb9bd !important;
+    }
+    label {
+      color: #afb9bd !important;
+    }
+    .MuiInput-underline:after {
+      border-bottom-color: #afb9bd !important;
+    }
+    .MuiOutlinedInput-root fieldset {
+      border-color: #afb9bd !important;
+    }
+    .MuiOutlinedInput-root:hover fieldset {
+      border-color: #fff !important;
+    }
+    .MuiOutlinedInput-root.Mui-focused fieldset {
+      border-color: #fff !important;
+    }
   }
 }
 
