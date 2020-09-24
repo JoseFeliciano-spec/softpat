@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import "./LoggedLayout.scss";
 import AppBar from "@material-ui/core/AppBar";
-
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
@@ -16,57 +15,15 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import firebase from "../../utils/Firebase";
 import "firebase/auth";
+import MenuLeft from "../../components/MenuLeft";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    paddingBottom: 50,
-  },
-  list: {
-    marginBottom: theme.spacing(2),
-  },
-  subheader: {
-    backgroundColor: theme.palette.background.paper,
-  },
-  appBar: {
-    top: "auto",
-    bottom: 0,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  fabButton: {
-    position: "absolute",
-    zIndex: 1,
-    top: -30,
-    left: 0,
-    right: 0,
-    margin: "0 auto",
-  },
-
   root: {
     flexGrow: 1,
   },
 
   menuButton: {
     marginRight: theme.spacing(2),
-    marginTop: theme.spacing(1.5),
-  },
-  "@media(maxHeight: 700px)": {
-    menuButton: {
-      marginTop: theme.spacing(0.5),
-    },
-    botton: {
-      marginTop: theme.spacing(0.5),
-    },
-    title: {
-      marginTop: theme.spacing(0.5),
-    },
-  },
-  title: {
-    flexGrow: 1,
-    marginTop: theme.spacing(1.5),
-  },
-  botton: {
     marginTop: theme.spacing(1.5),
   },
 }));
@@ -82,8 +39,14 @@ export default function LoggedLayout(props) {
 
   const [value, setValue] = React.useState("/");
 
+  const [boton, setBoton] = useState(false);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleMenuLeft = () => {
+    setBoton(!boton);
   };
 
   return (
@@ -96,6 +59,7 @@ export default function LoggedLayout(props) {
               className="posicionamiento"
               color="inherit"
               aria-label="menu"
+              onClick={handleMenuLeft}
             >
               <MenuIcon />
             </IconButton>
@@ -129,31 +93,18 @@ export default function LoggedLayout(props) {
           <h1 className=" text-center mt-4">Hola</h1>
         </Grid>
         <AppBar position="fixed" color="primary" className="bottombar">
-          <BottomNavigation
-            value={value}
-            showLabels
-            className="pieBar shadow-lg rounded"
-          >
+          <BottomNavigation showLabels className="pieBar shadow-lg rounded">
             <BottomNavigationAction
-              onclick={() => {
-                setValue("/");
-              }}
               value={"/"}
               label="Recents"
               icon={<RestoreIcon />}
             />
             <BottomNavigationAction
-              onclick={() => {
-                setValue("/home");
-              }}
               value={"/home"}
               label="Favorites"
               icon={<FavoriteIcon />}
             />
             <BottomNavigationAction
-              onclick={() => {
-                setValue("/art");
-              }}
               value={"/art"}
               label="Nearby"
               icon={<LocationOnIcon />}
@@ -161,6 +112,7 @@ export default function LoggedLayout(props) {
           </BottomNavigation>
         </AppBar>
       </Grid>
+      <MenuLeft boton={boton} setBoton={setBoton} />
     </div>
   );
 }

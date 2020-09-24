@@ -1,0 +1,34 @@
+@import "../../scss/index.scss";
+.Drawer-op .MuiPaper-root {
+  background: $background-light !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .Drawer-op .MuiPaper-root {
+    background: $background-secondary-dark !important;
+  }
+}
+
+.list {
+  width: 250px !important;
+}
+
+.theme-icon {
+  color: $font-dark !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-icon {
+    color: $font-ligth !important;
+  }
+}
+
+.theme-text {
+  color: $font-dark !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-text {
+    color: $font-ligth !important;
+  }
+}
