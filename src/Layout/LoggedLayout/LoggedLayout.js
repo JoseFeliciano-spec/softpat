@@ -21,7 +21,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-
+  appbar: {
+    alignItems: "center",
+    justifyContent: "space-beewten",
+    width: "100%",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     marginTop: theme.spacing(1.5),
@@ -52,25 +56,27 @@ export default function LoggedLayout(props) {
   return (
     <div>
       <div className={classes.root}>
-        <AppBar className="appbar">
-          <Toolbar>
-            <IconButton
-              edge="start"
-              className="posicionamiento"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleMenuLeft}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className="titulo">
-              News
-            </Typography>
-            <Button color="inherit" className="posicionamiento" onClick={salir}>
-              Salir
-            </Button>
-          </Toolbar>
-        </AppBar>
+        {
+          <AppBar className="appbar">
+            <Toolbar>
+              <IconButton
+                edge="start"
+                className=""
+                color="inherit"
+                aria-label="menu"
+                onClick={handleMenuLeft}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" className="titulo">
+                News
+              </Typography>
+              <Button color="inherit" className="" onClick={salir}>
+                Salir
+              </Button>
+            </Toolbar>
+          </AppBar>
+        }
       </div>
       <Grid container direction="column">
         <Grid item className="primero"></Grid>
