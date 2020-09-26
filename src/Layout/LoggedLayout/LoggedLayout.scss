@@ -40,7 +40,7 @@
 }
 .segundo {
   background: $background-light !important;
-  min-height: 91.5vh !important;
+  min-height: 90.5vh !important;
   width: 100% !important;
 }
 
@@ -50,27 +50,6 @@
   }
 }
 
-.posicionamiento {
-  //margin-top: 12px !important;
-  //align-self: center;
-  //margin: 0 auto;
-}
 .titulo {
   flex-grow: 1;
-}
-.caja {
-  width: 200px;
-}
-
-@media screen and (max-height: 480px) {
-  .posicionamiento {
-    //margin-top: 5px !important;
-  }
-  .titulo {
-    flex-grow: 1;
-    margin-top: 5px !important;
-  }
-  .caja {
-    margin-top: 5px;
-  }
 }

@@ -16,6 +16,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import firebase from "../../utils/Firebase";
 import "firebase/auth";
 import MenuLeft from "../../components/MenuLeft";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "../../routes/Routes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,49 +56,32 @@ export default function LoggedLayout(props) {
   };
 
   return (
-    <div>
+    <Router>
       <div className={classes.root}>
-        {
-          <AppBar className="appbar">
-            <Toolbar>
-              <IconButton
-                edge="start"
-                className=""
-                color="inherit"
-                aria-label="menu"
-                onClick={handleMenuLeft}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" className="titulo">
-                News
-              </Typography>
-              <Button color="inherit" className="" onClick={salir}>
-                Salir
-              </Button>
-            </Toolbar>
-          </AppBar>
-        }
+        <AppBar className="appbar">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className=""
+              color="inherit"
+              aria-label="menu"
+              onClick={handleMenuLeft}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" className="titulo">
+              SoftPat
+            </Typography>
+            <Button color="inherit" className="" onClick={salir}>
+              Salir
+            </Button>
+          </Toolbar>
+        </AppBar>
       </div>
       <Grid container direction="column">
         <Grid item className="primero"></Grid>
         <Grid item className="segundo">
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
-          <h1 className=" text-center mt-4">Hola</h1>
+          <Routes />
         </Grid>
         <AppBar position="fixed" color="primary" className="bottombar">
           <BottomNavigation showLabels className="pieBar shadow-lg rounded">
@@ -119,6 +104,6 @@ export default function LoggedLayout(props) {
         </AppBar>
       </Grid>
       <MenuLeft boton={boton} setBoton={setBoton} />
-    </div>
+    </Router>
   );
 }
