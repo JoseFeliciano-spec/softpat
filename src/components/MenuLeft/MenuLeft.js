@@ -7,7 +7,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import { Link, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import "./MenuLeft.scss";
 
 function MenuLeft(props) {
@@ -21,7 +21,7 @@ function MenuLeft(props) {
     <>
       <Drawer open={boton} onClose={handlerSetClose} className="Drawer-op">
         <List className="list">
-          <ListItem button onClick={handlerSetClose} component={Link} to="/">
+          <ListItem button onClick={handlerSetClose} component={NavLink} to="/">
             <ListItemIcon>
               <FavoriteIcon className="theme-icon" />
             </ListItemIcon>
@@ -30,7 +30,7 @@ function MenuLeft(props) {
           <ListItem
             button
             onClick={handlerSetClose}
-            component={Link}
+            component={NavLink}
             to="/sistema-computo"
           >
             <ListItemIcon>

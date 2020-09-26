@@ -83,7 +83,7 @@ export default function LoggedLayout(props) {
         <Grid item className="segundo">
           <Routes />
         </Grid>
-        <AppBar position="fixed" color="primary" className="bottombar">
+        {/* <AppBar position="fixed" color="primary" className="bottombar">
           <BottomNavigation showLabels className="pieBar shadow-lg rounded">
             <BottomNavigationAction
               value={"/"}
@@ -101,7 +101,7 @@ export default function LoggedLayout(props) {
               icon={<LocationOnIcon />}
             />
           </BottomNavigation>
-        </AppBar>
+        </AppBar> */}
       </Grid>
       <MenuLeft boton={boton} setBoton={setBoton} />
     </Router>

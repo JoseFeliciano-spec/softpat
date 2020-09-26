@@ -1,0 +1,21 @@
+@import "../../../scss/index.scss";
+
+@import "../../../scss/index.scss";
+
+.bottombarPC {
+  top: auto !important;
+  bottom: 0 !important;
+}
+.pieBarPC {
+  min-height: 9.5vh !important;
+
+  background: $background-light !important;
+}
+@media (prefers-color-scheme: dark) {
+  .pieBarPC {
+    background: $background-secondary-dark !important;
+  }
+}
+a:hover {
+  text-decoration: none !important;
+}

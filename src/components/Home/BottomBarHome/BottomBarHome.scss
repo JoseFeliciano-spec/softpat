@@ -1,0 +1,19 @@
+@import "../../../scss/index.scss";
+
+.bottombar {
+  top: auto !important;
+  bottom: 0 !important;
+}
+.pieBar {
+  min-height: 9.5vh !important;
+
+  background: $background-light !important;
+}
+@media (prefers-color-scheme: dark) {
+  .pieBar {
+    background: $background-secondary-dark !important;
+  }
+}
+a:hover {
+  text-decoration: none !important;
+}
