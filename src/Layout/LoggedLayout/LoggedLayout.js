@@ -4,10 +4,7 @@ import "./LoggedLayout.scss";
 import AppBar from "@material-ui/core/AppBar";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { makeStyles } from "@material-ui/core/styles";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -40,7 +37,7 @@ const salir = () => {
 
 export default function LoggedLayout(props) {
   const { user } = props;
-  console.log(user);
+  //console.log(user);
   const classes = useStyles();
 
   const [value, setValue] = React.useState("/");
@@ -83,25 +80,6 @@ export default function LoggedLayout(props) {
         <Grid item className="segundo">
           <Routes />
         </Grid>
-        {/* <AppBar position="fixed" color="primary" className="bottombar">
-          <BottomNavigation showLabels className="pieBar shadow-lg rounded">
-            <BottomNavigationAction
-              value={"/"}
-              label="Recents"
-              icon={<RestoreIcon />}
-            />
-            <BottomNavigationAction
-              value={"/home"}
-              label="Favorites"
-              icon={<FavoriteIcon />}
-            />
-            <BottomNavigationAction
-              value={"/art"}
-              label="Nearby"
-              icon={<LocationOnIcon />}
-            />
-          </BottomNavigation>
-        </AppBar> */}
       </Grid>
       <MenuLeft boton={boton} setBoton={setBoton} />
     </Router>

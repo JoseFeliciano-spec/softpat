@@ -6,33 +6,32 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import RestoreIcon from "@material-ui/icons/Restore";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import { Link, withRouter } from "react-router-dom";
+import CreateIcon from "@material-ui/icons/Create";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import { NavLink, withRouter } from "react-router-dom";
 import "./BottomBarPC.scss";
 
-export default function BottomBarPC() {
+function BottomBarPC() {
   return (
     <div>
       <AppBar position="fixed" color="primary" className="bottombarPC">
         <BottomNavigation showLabels className="pieBarPC shadow-lg rounded">
           <BottomNavigationAction
-            component={Link}
-            to="/sistema-computo"
+            component={NavLink}
+            to="/"
             label="Ver"
             icon={<VisibilityIcon />}
           />
           <BottomNavigationAction
-            component={Link}
-            to="/nosotros"
+            component={NavLink}
+            to="/"
             label="Editar"
-            icon={<FavoriteIcon />}
+            icon={<CreateIcon />}
           />
-          <BottomNavigationAction
-            component={Link}
-            label="Crear"
-            icon={<FavoriteIcon />}
-          />
+          <BottomNavigationAction label="Crear" icon={<AddCircleIcon />} />
         </BottomNavigation>
       </AppBar>
     </div>
   );
 }
+export default withRouter(BottomBarPC);

@@ -7,7 +7,7 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import RestoreIcon from "@material-ui/icons/Restore";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import { Link, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
 function BottomBarHome() {
   const [value, setValue] = useState(0);
@@ -17,13 +17,13 @@ function BottomBarHome() {
       <AppBar value={0} position="fixed" color="primary" className="bottombar">
         <BottomNavigation showLabels className="pieBar shadow-lg rounded">
           <BottomNavigationAction
-            component={Link}
+            component={NavLink}
             to="/"
             label="Inicio"
             icon={<LocationOnIcon />}
           />
           <BottomNavigationAction
-            component={Link}
+            component={NavLink}
             to="/nosotros"
             label="¿Quienes somos?"
             icon={<FavoriteIcon />}

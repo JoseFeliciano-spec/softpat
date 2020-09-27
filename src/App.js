@@ -7,12 +7,6 @@ import ReactDOM from "react-dom";
 import PreAuth from "./components/Auth/PreAuth";
 import { ToastContainer } from "react-toastify";
 import LoggedLayout from "./layout/LoggedLayout";
-/* import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom"; */
 
 const Login = () => {
   return (
