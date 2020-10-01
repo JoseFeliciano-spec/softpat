@@ -7,25 +7,38 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import RestoreIcon from "@material-ui/icons/Restore";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import { NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function BottomBarHome() {
-  const [value, setValue] = useState(0);
+  let history = useHistory();
+
+  const handlerCambiar = (e) => {
+    let id = e.currentTarget.id;
+    switch (id) {
+      case "inicio":
+        history.push("/");
+        break;
+      case "nosotros":
+        history.push("/nosotros");
+        break;
+    }
+  };
 
   return (
     <div>
-      <AppBar value={0} position="fixed" color="primary" className="bottombar">
+      <AppBar position="fixed" color="primary" className="bottombar">
         <BottomNavigation showLabels className="pieBar shadow-lg rounded">
           <BottomNavigationAction
-            component={NavLink}
-            to="/"
             label="Inicio"
+            id="inicio"
+            onClick={handlerCambiar}
             icon={<LocationOnIcon />}
           />
           <BottomNavigationAction
-            component={NavLink}
-            to="/nosotros"
             label="¿Quienes somos?"
+            id="nosotros"
+            onClick={handlerCambiar}
             icon={<FavoriteIcon />}
           />
         </BottomNavigation>

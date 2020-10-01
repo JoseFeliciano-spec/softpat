@@ -7,21 +7,39 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import { NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./MenuLeft.scss";
 
 function MenuLeft(props) {
+  let history = useHistory();
   const { boton, setBoton } = props;
-
   const handlerSetClose = () => {
     setBoton(!boton);
+  };
+  const handlerCambiar = (e) => {
+    let id = e.currentTarget.id;
+    switch (id) {
+      case "inicio":
+        history.push("/");
+        setBoton(!boton);
+        break;
+      case "sistema-computo":
+        history.push("/sistema-computo");
+        setBoton(!boton);
+        break;
+    }
   };
 
   return (
     <>
       <Drawer open={boton} onClose={handlerSetClose} className="Drawer-op">
         <List className="list">
-          <ListItem button onClick={handlerSetClose} component={NavLink} to="/">
+          <ListItem
+            button
+            onClick={handlerCambiar}
+            id="inicio" /* component={NavLink} to="/" */
+          >
             <ListItemIcon>
               <FavoriteIcon className="theme-icon" />
             </ListItemIcon>
@@ -29,9 +47,10 @@ function MenuLeft(props) {
           </ListItem>
           <ListItem
             button
-            onClick={handlerSetClose}
-            component={NavLink}
-            to="/sistema-computo"
+            onClick={handlerCambiar}
+            id="sistema-computo"
+            /* component={NavLink}
+            to="/sistema-computo" */
           >
             <ListItemIcon>
               <FavoriteIcon className="theme-icon" />
