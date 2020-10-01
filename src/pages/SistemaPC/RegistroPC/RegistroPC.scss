@@ -1,1 +1,32 @@
 @import "../../../scss/index.scss";
+
+.background-registro-pc {
+  background: $background-light !important;
+  &__box .MuiPaper-root {
+    background: $background-light !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .background-registro-pc {
+    background: $background-dark !important;
+    &__box .MuiPaper-root {
+      background: $background-dark !important;
+    }
+    &__box .MuiStepLabel-label {
+      color: $font-ligth;
+    }
+  }
+  .label-registro-pc .MuiStepLabel-label .MuiStepLabel-active {
+    color: $font-ligth !important;
+  }
+  .label-registro-pc .MuiStepLabel-label.MuiStepLabel-active {
+    color: $font-ligth !important;
+  }
+  .MuiStepLabel-label .MuiStepLabel-completed {
+    color: $font-ligth !important;
+  }
+  .MuiStepLabel-completed {
+    color: $font-ligth !important;
+  }
+}
