@@ -4,7 +4,6 @@ import "./LoggedLayout.scss";
 import AppBar from "@material-ui/core/AppBar";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -15,6 +14,7 @@ import "firebase/auth";
 import MenuLeft from "../../components/MenuLeft";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "../../routes/Routes";
+import RegistroPC from "../../pages/SistemaPC/RegistroPC";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import BottomBarHome from "../components/Home/BottomBarHome";
 import BottomBarPC from "../components/SistemaPC/BottomBarPC";
 import Nosotros from "../pages/Home/Nosotros";
 import SistemaPC from "../pages/SistemaPC/VerPC";
+import RegistroPC from "../pages/SistemaPC/RegistroPC";
 
-export default function Routes() {
+export default function Routes(props) {
+  const { open, setOpen } = props;
   return (
     <Switch>
       <Route path="/" exact>
-        <h1>Home</h1>
         <h1>Home</h1>
         <h1>Home</h1>
         <BottomBarHome />
@@ -20,7 +21,7 @@ export default function Routes() {
       </Route>
       <Route path="/sistema-computo" exact>
         <SistemaPC />
-        <BottomBarPC />
+        <BottomBarPC open={open} setOpen={setOpen} />
       </Route>
       <Route path="*">
         <h1>Error 404</h1>

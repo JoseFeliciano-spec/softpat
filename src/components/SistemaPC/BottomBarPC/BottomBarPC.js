@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 import "./BottomBarPC.scss";
 import RegistroPC from "../../../pages/SistemaPC/RegistroPC";
 
-function BottomBarPC() {
+function BottomBarPC(props) {
   const [open, setOpen] = useState(false);
 
   let history = useHistory();

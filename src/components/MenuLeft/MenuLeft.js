@@ -25,6 +25,7 @@ function MenuLeft(props) {
         setBoton(!boton);
         break;
       case "sistema-computo":
+        /* history.replace("/sistema-computo"); */
         history.push("/sistema-computo");
         setBoton(!boton);
         break;

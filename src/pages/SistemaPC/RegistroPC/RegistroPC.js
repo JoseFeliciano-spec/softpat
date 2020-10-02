@@ -107,14 +107,22 @@ export default function RegistroPC(props) {
             <div>
               {activeStep === steps.length ? (
                 <div>
-                  <Typography className={classes.instructions}>
+                  <Typography
+                    className={classes.instructions}
+                    component={"span"}
+                    variant={"body2"}
+                  >
                     All steps completed
                   </Typography>
                   <Button onClick={handleReset}>Reset</Button>
                 </div>
               ) : (
                 <div>
-                  <Typography className={classes.instructions}>
+                  <Typography
+                    className={classes.instructions}
+                    component={"span"}
+                    variant={"body2"}
+                  >
                     {getStepContent(activeStep)}
                   </Typography>
                   <div>
