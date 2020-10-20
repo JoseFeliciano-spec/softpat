@@ -10,11 +10,18 @@
   }
 }
 
+.avatar-app {
+  background: #5000ca !important;
+  border: #fff 2px solid;
+  border-radius: 20rem;
+}
+
 .appbar {
   /* min-height: 9.5vh !important; */
   align-items: center;
   min-height: 9.5vh !important;
-  background: #00bcd4 !important;
+
+  background: #5000ca !important;
 }
 .appbar .MuiToolbar-regular {
   width: 100% !important;

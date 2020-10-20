@@ -14,7 +14,8 @@ import "firebase/auth";
 import MenuLeft from "../../components/MenuLeft";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "../../routes/Routes";
-import RegistroPC from "../../pages/SistemaPC/RegistroPC";
+/* import RegistroPC from "../../pages/SistemaPC/RegistroPC"; */
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +38,7 @@ const salir = () => {
 
 export default function LoggedLayout(props) {
   const { user } = props;
-  //console.log(user);
+  console.log(user);
   const classes = useStyles();
 
   const [value, setValue] = React.useState("/");
@@ -51,6 +52,9 @@ export default function LoggedLayout(props) {
   const handleMenuLeft = () => {
     setBoton(!boton);
   };
+
+  
+
 
   return (
     <Router>
@@ -70,7 +74,12 @@ export default function LoggedLayout(props) {
               SoftPat
             </Typography>
             <Button color="inherit" className="" onClick={salir}>
-              Salir
+              {!user.photoURL ? 
+              <Avatar className="avatar-app">
+                {user.displayName.charAt(0)}
+              </Avatar> : 
+              <h1>h</h1>
+              }
             </Button>
           </Toolbar>
         </AppBar>
