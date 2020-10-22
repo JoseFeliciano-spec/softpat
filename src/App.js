@@ -30,7 +30,7 @@ const salir = () => {
 };
 
 function App() {
-  setTimeout(() => {
+  
     firebase.auth().onAuthStateChanged((cliente) => {
       if (cliente?.emailVerified) {
         //setUser(cliente);
@@ -46,7 +46,7 @@ function App() {
         ReactDOM.render(<Auth />, document.getElementById("root"));
       }
     });
-  }, 500);
+  
 
   return (
     <>

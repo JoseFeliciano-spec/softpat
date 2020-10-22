@@ -1,5 +1,68 @@
 @import "../../../../scss/index.scss";
 
+.date-pc-r {
+  & input {
+    height: 1.7em !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .date-pc-r {
+    .MuiSvgIcon-root {
+      fill: $font-ligth;
+    }
+    & input {
+      color: $font-ligth;
+    }
+    label.Mui-focused {
+      color: #afb9bd;
+    }
+    label {
+      color: #afb9bd;
+    }
+    .MuiInput-underline:hover:not(.Mui-disabled)::before {
+      border-bottom: 2px solid #fff;
+    }
+    .MuiInput-underline::before {
+      border-bottom: 1px solid #afb9bd;
+    }
+    .MuiInput-underline::after {
+      border-bottom-color: #fff !important;
+    }
+    .MuiInput-underline:active {
+      border-bottom-color: #fff;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Cambiar el background del dialog de la fecha registro. */
+  .MuiPickersBasePicker-pickerView {
+    background: #202020 !important;
+
+    /* Cambiar los colores de los dias */
+    .MuiPickersCalendarHeader-dayLabel {
+      color: $font-ligth;
+    }
+    /* Cambiar la tipografia de los dias */
+    .MuiTypography-colorInherit {
+      color: $font-ligth;
+    }
+  }
+  /* Footer */
+  .MuiDialogActions-root {
+    background: #202020;
+  }
+  /* Header */
+  .MuiPickersCalendarHeader-switchHeader .MuiIconButton-root {
+    background: #202020;
+  }
+
+  .MuiPickersCalendarHeader-switchHeader .MuiSvgIcon-root {
+    fill: $font-ligth;
+  }
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
