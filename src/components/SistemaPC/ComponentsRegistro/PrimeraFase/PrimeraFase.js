@@ -12,13 +12,19 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import "./PrimeraFase.scss";
 
-export default function PrimeraFase() {
+export default function PrimeraFase(props) {
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const {dataFormPC, setDataFormPC}  = props;
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  const onChange = (e)=>{
+    setDataFormPC({...dataFormPC, [e.target.name] : e.target.value});
+    /* console.log(e.target.name + ": " + e.target.value); */
+  }
+
+  const onChangeTime = (time)=>{
+    setDataFormPC({...dataFormPC, fechaEquipo: time } )
+    console.log(dataFormPC.fechaEquipo);
+  }
 
   return (
     <div>
@@ -29,8 +35,8 @@ export default function PrimeraFase() {
               <InputLabel htmlFor="outlined-tipocomputadora-select">TIPO COMPUTADORA</InputLabel>
               <Select
                 native
-                /* value={state.age}
-                onChange={handleChange} */
+                value={dataFormPC.tipoComputadora}
+                onChange={onChange}
                 label="TIPO COMPUTADORA"
                 inputProps={{
                   name: 'tipoComputadora',
@@ -38,8 +44,8 @@ export default function PrimeraFase() {
                 }}
               >
                 <option aria-label="None" value="" />
-                <option value={20}>Sobremesa</option>
-                <option value={10}>Portátil</option>
+                <option value="sobremesa">Sobremesa</option>
+                <option value="portatil" >Portátil</option>
               </Select>
             </FormControl>
           </div>
@@ -49,50 +55,86 @@ export default function PrimeraFase() {
               id="date-picker-dialog"
               label="SELECCIONAR FECHA"
               format="MM/dd/yyyy"
-              className="date-pc-r"
+              className="date-pc-r w-100"
               invalidDateMessage="Datos inválidos."
               maxDateMessage="Supera el tope máximo."
-              value={selectedDate}
-              onChange={handleDateChange}
+              name="fechaEquipo"
+              value={dataFormPC.fechaEquipo}
+              onChange={onChangeTime}
               KeyboardButtonProps={{
                 'aria-label': 'Cambiar los Datos',
               }}
             />
+            
             </MuiPickersUtilsProvider>
           </div>
-          <div className="col-12 col-md-6">
+          <div className="col-12">
             <TextField
-              label="Prueba"
+              label="NOMBRE DEL EQUIPO"
               //id="outlined-margin-dense"
-              name="Prueba"
+              name="nombreEquipo"
               className="mt-4 color-input-pc w-100"
               variant="outlined"
-              /* onChange={onChange}
-              value={dataForm.email} */
+              onChange={onChange}
+              value={dataFormPC.nombreEquipo}
             />
           </div>
           <div className="col-12 col-md-6">
             <TextField
-              label="Prueba"
+              label="MEMORIA RAM"
               //id="outlined-margin-dense"
-              name="Prueba"
+              name="memoriaRam"
               className="mt-4 color-input-pc w-100"
               variant="outlined"
-              /* onChange={onChange}
-              value={dataForm.email} */
+              onChange={onChange}
+              value={dataFormPC.memoriaRam}
             />
           </div>
           <div className="col-12 col-md-6">
             <TextField
-              label="Prueba"
+              label="RESOLUCIÓN DE PANTALLA"
               //id="outlined-margin-dense"
-              name="Prueba"
+              name="resolucionPantalla"
               className="mt-4 color-input-pc w-100"
               variant="outlined"
-              /* onChange={onChange}
-              value={dataForm.email} */
+              onChange={onChange}
+              value={dataFormPC.resolucionPantalla}
             />
           </div>
+          <div className="col-12 col-md-6">
+            <TextField
+              label="DISCO DURO"
+              //id="outlined-margin-dense"
+              name="discoDuro"
+              className="mt-4 color-input-pc w-100"
+              variant="outlined"
+              onChange={onChange}
+              value={dataFormPC.discoDuro}
+            />
+          </div>
+
+          <div className="col-12 col-md-6">
+            <FormControl variant="outlined" className="w-100 mt-4 form-select-pf">
+              <InputLabel htmlFor="outlined-marcaprocesador-select">MARCA DEL PROCESADOR</InputLabel>
+              <Select
+                native
+                value={dataFormPC.marcaProcesador}
+                onChange={onChange}
+                label="MARCA DEL PROCESADOR"
+                inputProps={{
+                  name: 'marcaProcesador',
+                  id: 'outlined-marcaprocesador-select',
+                }}
+              >
+                <option aria-label="None" value="" />
+                <option value="intel" >Intel</option>
+                <option value="amd">Amd</option>
+                <option value="arm">Arm</option>
+              </Select>
+            </FormControl>
+          </div>
+
+
         </div>
       </div>
     </div>
