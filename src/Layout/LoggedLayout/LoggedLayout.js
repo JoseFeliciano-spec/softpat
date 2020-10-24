@@ -87,7 +87,7 @@ export default function LoggedLayout(props) {
       <Grid container direction="column">
         <Grid item className="primero"></Grid>
         <Grid item className="segundo">
-          <Routes />
+          <Routes user={user} />
         </Grid>
       </Grid>
       <MenuLeft boton={boton} setBoton={setBoton} />

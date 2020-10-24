@@ -14,13 +14,19 @@ import "./BottomBarPC.scss";
 import RegistroPC from "../../../pages/SistemaPC/RegistroPC";
 
 function BottomBarPC(props) {
+  /* Const user pasado por props */
+  const {user} = props;
+  /* Abrir y cerrar el componente registro */
   const [open, setOpen] = useState(false);
 
+  /* Ver el historial */
   let history = useHistory();
   const onClick = (e) => {
     history.push("/");
   };
 
+
+  /* Cambiar de barra */
   const handlerCambiar = (e) => {
     let id = e.currentTarget.id;
     switch (id) {
@@ -33,6 +39,7 @@ function BottomBarPC(props) {
     }
   };
 
+  /* Abrir y no abrir el componente RegistroPC */
   const handlerOpen = () => {
     setOpen(!open);
   };
@@ -61,7 +68,7 @@ function BottomBarPC(props) {
         </BottomNavigation>
       </AppBar>
 
-      <RegistroPC open={open} setOpen={setOpen} />
+      <RegistroPC open={open} user={user} setOpen={setOpen} />
     </div>
   );
 }

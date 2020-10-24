@@ -7,7 +7,7 @@ import SistemaPC from "../pages/SistemaPC/VerPC";
 import RegistroPC from "../pages/SistemaPC/RegistroPC";
 
 export default function Routes(props) {
-  const { open, setOpen } = props;
+  const { open, setOpen, user } = props;
   return (
     <Switch>
       <Route path="/" exact>
@@ -21,7 +21,7 @@ export default function Routes(props) {
       </Route>
       <Route path="/sistema-computo" exact>
         <SistemaPC />
-        <BottomBarPC open={open} setOpen={setOpen} />
+        <BottomBarPC open={open} setOpen={setOpen} user={user} />
       </Route>
       <Route path="*">
         <h1>Error 404</h1>

@@ -133,7 +133,39 @@ export default function PrimeraFase(props) {
               </Select>
             </FormControl>
           </div>
-
+          
+          <div className="col-12 col-md-6">
+            <TextField
+              label="MARCA"
+              //id="outlined-margin-dense"
+              name="marca"
+              className="mt-4 color-input-pc w-100"
+              variant="outlined"
+              onChange={onChange}
+              value={dataFormPC.marca}
+            />
+          </div>
+          
+          <div className="col-12 col-md-6">
+            <FormControl variant="outlined" className="w-100 mt-4 form-select-pf">
+              <InputLabel htmlFor="outlined-marcagrafica-select">MARCA DE LA GRÁFICA</InputLabel>
+              <Select
+                native
+                value={dataFormPC.marcaGrafica}
+                onChange={onChange}
+                label="MARCA DE LA GRÁFICA"
+                inputProps={{
+                  name: 'marcaGrafica',
+                  id: 'outlined-marcagrafica-select',
+                }}
+              >
+                <option aria-label="None" value="" />
+                <option value="intel" >Intel</option>
+                <option value="amd">Amd</option>
+                <option value="nvidia">Nvidia</option>
+              </Select>
+            </FormControl>
+          </div>
 
         </div>
       </div>
