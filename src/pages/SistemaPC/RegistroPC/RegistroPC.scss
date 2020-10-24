@@ -1,5 +1,15 @@
 @import "../../../scss/index.scss";
 
+.buttonColorBack {
+  color: $font-dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  .buttonColorBack {
+    color: $font-ligth !important;
+  }
+}
+
 .background-registro-pc {
   background: $background-light !important;
   &__box .MuiPaper-root {

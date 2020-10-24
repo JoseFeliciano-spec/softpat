@@ -12,6 +12,9 @@ import { withRouter } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import "./BottomBarPC.scss";
 import RegistroPC from "../../../pages/SistemaPC/RegistroPC";
+import { ToastContainer } from "react-toastify";
+
+
 
 function BottomBarPC(props) {
   /* Const user pasado por props */
@@ -34,7 +37,7 @@ function BottomBarPC(props) {
         history.push("/sistema-computo");
         break;
       case "editarBarraPC":
-        history.push("/");
+        history.push("/sistema-computo/editar");
         break;
     }
   };
@@ -68,6 +71,17 @@ function BottomBarPC(props) {
         </BottomNavigation>
       </AppBar>
 
+      <ToastContainer
+        position="bottom-right"
+        autoClose={6000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <RegistroPC open={open} user={user} setOpen={setOpen} />
     </div>
   );

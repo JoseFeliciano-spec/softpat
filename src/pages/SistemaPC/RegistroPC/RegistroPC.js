@@ -16,6 +16,7 @@ import firebase from "../../../utils/Firebase";
 import "firebase/storage";
 import "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -47,11 +48,13 @@ const db = firebase.firestore(firebase);
 export default function RegistroPC(props) {
   const { open, setOpen, user } = props;
 
-  console.log(user);
+  /* console.log(user); */
 
   const [dataFormPC, setDataFormPC] = useState(dataRegistoPC());
   const [file, setFile] = useState(null);
   const [banner, setBanner] = useState(null);
+  const [isLoad, setIsLoad] = useState(false);
+  /* const [okUse, setOkUse] = useState(true); */
 
   const handlerOpen = () => {
     setOpen(!open);
@@ -63,36 +66,96 @@ export default function RegistroPC(props) {
     return ref.put(file);
   };
 
-  const onSubmit = ()=>{
-    const fileName = uuidv4();
-    uploadImage(fileName).then(()=>{
-      db.collection("sistemapc")
-        .add({
-          registrador: user.displayName,
-          estadoVigente: true,
-          tipoComputadora: dataFormPC.tipoComputadora,
-          nombreEquipo: dataFormPC.nombreEquipo,
-          memoriaRam: dataFormPC.memoriaRam,
-          resolucionPantalla: dataFormPC.resolucionPantalla,
-          discoDuro: dataFormPC.discoDuro,
-          marcaProcesador: dataFormPC.marcaProcesador,
-          fechaEquipo: dataFormPC.fechaEquipo,
-          marca: dataFormPC.marca,
-          marcaGrafica: dataFormPC.marcaGrafica,
-          estado: dataFormPC.estado,
-          modelo: dataFormPC.modelo,
-          noSerie: dataFormPC.noSerie,
-          owned: dataFormPC.owned,
-          lectordvd: dataFormPC.lectordvd,
-          puertohdmi: dataFormPC.puertohdmi,
-          puertousb: dataFormPC.puertousb,
-          image: fileName
-        })
-        .then(()=>{console.log("Listo")});
-    })
+
+  async function onSubmit(){
+    let ok = true;
+    /* Código para saber si el noSerie está ocupado */
+    await db.collection("sistemapc").where("noSerie", "==", dataFormPC.noSerie)
+      .get().then(function(querySnapshot){
+        querySnapshot.forEach(function(doc) {
+          toast.warning("El noSerie está en uso.");
+          ok = false;
+          console.log(ok);
+        });
+     })
+
+    if(dataFormPC.tipoComputadora === ''){ ok = false;}
+
+    if(dataFormPC.nombreEquipo === ''){ok = false;}
+
+    if(dataFormPC.memoriaRam === ''){ok = false;}
+
+    if(dataFormPC.resolucionPantalla === ''){ok = false;}
+
+    if(dataFormPC.discoDuro === ''){ok = false;}
+
+    if(dataFormPC.marcaProcesador === ''){ok = false;}
+
+    if(dataFormPC.fechaEquipo == null){ok = false;}
+
+    if(dataFormPC.marca === ''){ok = false;}
+
+    if(dataFormPC.marcaGrafica === ''){ok = false;}
+
+    if(dataFormPC.estado == ''){ok = false;}
+
+    if(dataFormPC.modelo == ''){ok = false;}
+
+    if(dataFormPC.noSerie == ''){ok = false;}
+
+    if(dataFormPC.owned == ''){ok = false;}
+
+    if(dataFormPC.lectordvd == ''){ok = false;}
+
+    if(dataFormPC.puertohdmi == ''){ok = false;}
+
+    if(dataFormPC.puertousb == ''){ok = false;}
+
+    if(file == null){ok = false;}
+
+    if(!ok){
+      toast.warning("Hay campos vacios, revisa todos los campos.");
+    }
+    
+    if(ok){
+      setIsLoad(true);
+      toast.success("Subiendo los datos y la imagen...");
+      const fileName = uuidv4();
+      uploadImage(fileName).then(()=>{
+        db.collection("sistemapc")
+          .add({
+            registrador: user.displayName,
+            estadoVigente: true,
+            tipoComputadora: dataFormPC.tipoComputadora,
+            nombreEquipo: dataFormPC.nombreEquipo,
+            memoriaRam: dataFormPC.memoriaRam,
+            resolucionPantalla: dataFormPC.resolucionPantalla,
+            discoDuro: dataFormPC.discoDuro,
+            marcaProcesador: dataFormPC.marcaProcesador,
+            fechaEquipo: dataFormPC.fechaEquipo,
+            marca: dataFormPC.marca,
+            marcaGrafica: dataFormPC.marcaGrafica,
+            estado: dataFormPC.estado,
+            modelo: dataFormPC.modelo,
+            noSerie: dataFormPC.noSerie,
+            owned: dataFormPC.owned,
+            lectordvd: dataFormPC.lectordvd,
+            puertohdmi: dataFormPC.puertohdmi,
+            puertousb: dataFormPC.puertousb,
+            image: fileName
+          })
+          .then(()=>{
+            toast.success("Se ha registrado correctamente")
+            setIsLoad(false);
+          });
+      })
+    }
   }
 
-
+  /* const onSubmit = ()=>{
+    
+  } */
+    
   const getStepContent = (stepIndex)=> {
     switch (stepIndex) {
       case 0:
@@ -155,15 +218,17 @@ export default function RegistroPC(props) {
                     <Button
                       disabled={activeStep === 0}
                       onClick={handleBack}
-                      className={classes.backButton}
+                      disabled={isLoad == true}
+                      className="buttonColorBack"
                     >
-                      Back
+                      Atrás
                     </Button>
                     {activeStep === steps.length - 1 ? 
                       <Button
                         variant="contained"
                         color="primary"
                         className="mt-3 mb-3"
+                        disabled={isLoad == true}
                         onClick={onSubmit}
                       >
                         Registrar

@@ -5,6 +5,7 @@ import BottomBarPC from "../components/SistemaPC/BottomBarPC";
 import Nosotros from "../pages/Home/Nosotros";
 import SistemaPC from "../pages/SistemaPC/VerPC";
 import RegistroPC from "../pages/SistemaPC/RegistroPC";
+import EditarPC from "../pages/SistemaPC/EditarPC";
 
 export default function Routes(props) {
   const { open, setOpen, user } = props;
@@ -21,6 +22,10 @@ export default function Routes(props) {
       </Route>
       <Route path="/sistema-computo" exact>
         <SistemaPC />
+        <BottomBarPC open={open} setOpen={setOpen} user={user} />
+      </Route>
+      <Route path="/sistema-computo/editar" exact>
+        <EditarPC />
         <BottomBarPC open={open} setOpen={setOpen} user={user} />
       </Route>
       <Route path="*">
