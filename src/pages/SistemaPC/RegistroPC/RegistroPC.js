@@ -111,6 +111,8 @@ export default function RegistroPC(props) {
 
     if(dataFormPC.puertousb == ''){ok = false;}
 
+    if(dataFormPC.observaciones == ''){ok = false;}
+
     if(file == null){ok = false;}
 
     if(!ok){
@@ -142,7 +144,8 @@ export default function RegistroPC(props) {
             lectordvd: dataFormPC.lectordvd,
             puertohdmi: dataFormPC.puertohdmi,
             puertousb: dataFormPC.puertousb,
-            image: fileName
+            image: fileName,
+            observaciones: dataFormPC.observaciones
           })
           .then(()=>{
             toast.success("Se ha registrado correctamente")
@@ -218,7 +221,7 @@ export default function RegistroPC(props) {
                     <Button
                       disabled={activeStep === 0}
                       onClick={handleBack}
-                      disabled={isLoad == true}
+                      /* disabled={isLoad == true} */
                       className="buttonColorBack"
                     >
                       Atrás
@@ -270,6 +273,7 @@ function dataRegistoPC() {
     owned: "",
     lectordvd:"",
     puertohdmi:"",
-    puertousb:""
+    puertousb:"",
+    observaciones:""
   };
 }

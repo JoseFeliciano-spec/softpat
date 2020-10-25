@@ -57,6 +57,7 @@ export default function VerPC() {
       const docs = []
       querySnapshot.forEach(doc => {
         console.log(doc.data());
+        
         docs.push({...doc.data(), idKey: doc.id})
       });
       setLinkDataFormPC(docs);
@@ -67,18 +68,20 @@ export default function VerPC() {
     getSistemaPc();
   }, [])
 
+
+  
   return (
     <div>
       <h1 className="text-center mt-4">Ver Pc</h1>
       <div className="container contenedor-ver-pc">
         <div className="row">
           {linkDataFormPC.map(link =>(
-            <div className="col-md-4 col-12">
+            <div className="col-md-4 col-12" key={link.idKey}>
               <Card className="w-100 mt-4">
                 <CardHeader
                   avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
-                      R
+                      {link.registrador.charAt(0)}
                     </Avatar>
                   }
                   action={
@@ -86,18 +89,19 @@ export default function VerPC() {
                       <MoreVertIcon />
                     </IconButton>
                   }
-                  title="Shrimp and Chorizo Paella"
-                  subheader="September 14, 2016"
+                  title={`${link.nombreEquipo} by ${link.registrador}`}
+                  subheader={link.fechaEquipo.toDate().toString()}
                 />
-                <CardMedia
-                  className={classes.media}
-                  /* image="/static/images/cards/paella.jpg" */
-                  title="Paella dish"
-                />
+                
+                  <Image link={link} />
+                
                 <CardContent>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                  <Typography variant="body2" color="textSecondary" component="p"> 
+                    {`Dueño del equipo: ${link.owned}`} 
+                  </Typography>
+                  <br/>
+                  <Typography variant="body2" color="textSecondary" component="p"> 
+                    {link.observaciones}
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
@@ -121,23 +125,27 @@ export default function VerPC() {
     </div>
   );
 }
-function dataRegistoPC() {
-  return {
-    tipoComputadora: "",
-    nombreEquipo: "",
-    memoriaRam: "",
-    resolucionPantalla: "",
-    discoDuro: "",
-    marcaProcesador: "",
-    fechaEquipo: new Date(),
-    marca: "",
-    marcaGrafica:"",
-    estado: "",
-    modelo: "",
-    noSerie: "",
-    owned: "",
-    lectordvd:"",
-    puertohdmi:"",
-    puertousb:""
-  };
+function Image(props) {
+  const classes = useStyles();
+  const {link} = props;
+  const [bannerUrl, setBannerUrl] = useState(null);
+
+  useEffect(() => {
+    firebase.storage()
+            .ref(`sistemapc/${link.image}`)
+            .getDownloadURL()
+            .then((image) =>{setBannerUrl(image)});
+  }, [link])
+
+
+  return(
+    
+      <CardMedia
+        component="div"
+        className={classes.media}
+        image={bannerUrl}
+        title={link.image}
+      />
+    
+  );
 }

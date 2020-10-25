@@ -129,7 +129,19 @@ export default function TerceraFase(props) {
                 </Select>
             </FormControl>
           </div>
-
+          
+          <div className="col-12">
+            <TextField
+              label="OBSERVACIONES"
+              //id="outlined-margin-dense"
+              name="observaciones"
+              className="mt-4 color-input-pc w-100"
+              variant="outlined"
+              onChange={onChange}
+              value={dataFormPC.observaciones}
+            />
+          </div>
+          
         </div>
       </div>
     </div>
