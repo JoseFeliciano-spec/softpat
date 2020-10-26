@@ -1,5 +1,94 @@
 @import "../../../scss/index.scss";
 
+.search-box {
+  display: flex;
+  width: 450px;
+  border: none;
+  position: relative;
+  height: 60px;
+  background: $background-secondary-dark;
+  border-radius: 15px;
+  /* box-shadow: 0 3px 5px #beb4ff; */
+  color: white;
+  font-weight: 600;
+  cursor: text;
+  & input {
+    position: absolute;
+    z-index: 0;
+    width: 450px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    background: $background-secondary-dark;
+    padding-left: 60px;
+    &:focus {
+      outline: none;
+      & + .search {
+        transform: perspective(400px) rotateY(89deg);
+        padding: 3px 0;
+        opacity: 0;
+      }
+    }
+  }
+  & i.search {
+    height: 20px;
+    width: 20px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    transform: rotatez(-45deg);
+    top: 18px;
+    left: 5%;
+    transition: 0.2s all;
+    transform-style: preserve-3d;
+    perspective: 400px;
+    &::after {
+      content: "";
+      display: block;
+      width: 5px;
+      height: 15px;
+      background: #fff;
+      position: absolute;
+      left: calc(50% - 2px);
+      border-radius: 10px;
+      top: 101%;
+    }
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 .contenedor-ver-pc {
   margin-bottom: 80px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card-header-pc {
+    background: $background-secondary-dark;
+
+    & span {
+      color: $font-ligth;
+    }
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .card-content-pc {
+    background: $background-secondary-dark;
+
+    & p {
+      color: $font-ligth;
+    }
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .card-action-pc {
+    background: $background-secondary-dark;
+  }
 }

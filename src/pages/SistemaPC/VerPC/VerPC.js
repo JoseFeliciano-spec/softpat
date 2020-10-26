@@ -3,15 +3,12 @@ import firebase from "../../../utils/Firebase";
 import "firebase/storage";
 import "firebase/firestore";
 import "./VerPC.scss";
-
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -20,7 +17,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
+import moment from 'moment';
+import 'moment/locale/es'  // without this line it didn't work
 
 const db = firebase.firestore(firebase);
 
@@ -50,61 +48,85 @@ const useStyles = makeStyles((theme) => ({
 export default function VerPC() {
   const classes = useStyles();
   const [linkDataFormPC, setLinkDataFormPC] = useState([]);
+  const [search, setSearch] = useState("");
+  const [term, setTerm] = useState("");
 
+  moment.locale();
   /* Para obtener sistemaPC */
   const getSistemaPc = async()=>{
     const querySnapshot =  await db.collection("sistemapc").onSnapshot(       (querySnapshot)=>{
       const docs = []
       querySnapshot.forEach(doc => {
         console.log(doc.data());
-        
         docs.push({...doc.data(), idKey: doc.id})
       });
       setLinkDataFormPC(docs);
     });
   }
 
+  function searchTerm(term){
+    return function(x){
+      return (x.marca.toLowerCase().includes(term.toLowerCase())) ||(x.noSerie.includes(term)) || !term;
+    }
+  };
+
   useEffect(() => {
+    
     getSistemaPc();
   }, [])
-
 
   
   return (
     <div>
-      <h1 className="text-center mt-4">Ver Pc</h1>
+      <h1 className="text-center my-4">Dispositivos en manteniento.</h1>
+
+      <div className="container">
+        <div class="search-box w-100">
+          <input type="text" class="w-100" placeholder="Introduzca el número de serie y/o la marca del dispositivo." onChange={(e)=>{setTerm(e.target.value)}} name="term"/>
+          {/* <i id="icon" class="search"></i> */}
+        </div>
+      </div>
+
       <div className="container contenedor-ver-pc">
         <div className="row">
-          {linkDataFormPC.map(link =>(
+          {linkDataFormPC
+            .filter(searchTerm(term))
+            .filter(link => link.estadoVigente === true)
+            .map(link =>(
             <div className="col-md-4 col-12" key={link.idKey}>
               <Card className="w-100 mt-4">
                 <CardHeader
+                  className="card-header-pc"
                   avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
                       {link.registrador.charAt(0)}
                     </Avatar>
                   }
-                  action={
+                  /* action={
                     <IconButton aria-label="settings">
                       <MoreVertIcon />
                     </IconButton>
-                  }
+                  } */
                   title={`${link.nombreEquipo} by ${link.registrador}`}
-                  subheader={link.fechaEquipo.toDate().toString()}
+                  subheader={moment(link.fechaEquipo.toDate()).calendar()}
                 />
                 
                   <Image link={link} />
                 
-                <CardContent>
-                  <Typography variant="body2" color="textSecondary" component="p"> 
+                <CardContent className="card-content-pc">
+                  <Typography variant="body2" color="textSecondary" component="p" className="mb-1"> 
                     {`Dueño del equipo: ${link.owned}`} 
                   </Typography>
-                  <br/>
-                  <Typography variant="body2" color="textSecondary" component="p"> 
-                    {link.observaciones}
+                  
+                  <Typography variant="body2" color="textSecondary" component="p" className="mb-1">  
+                    {`Marca del equipo: ${link.marca}`} 
+                  </Typography>
+                  
+                  <Typography variant="body2" color="textSecondary" component="p" className="mb-1"> 
+                    {`Observaciones: ${link.observaciones}`}
                   </Typography>
                 </CardContent>
-                <CardActions disableSpacing>
+                {/* <CardActions disableSpacing className="card-action-pc">
                   <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
                   </IconButton>
@@ -116,7 +138,7 @@ export default function VerPC() {
                   >
                     <ExpandMoreIcon />
                   </IconButton>
-                </CardActions>
+                </CardActions> */}
               </Card>
             </div>
           ))};
