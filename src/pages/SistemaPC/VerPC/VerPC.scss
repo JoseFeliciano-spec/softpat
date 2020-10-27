@@ -1,67 +1,55 @@
 @import "../../../scss/index.scss";
 
+.card-contenedor {
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75) !important;
+}
+
 .search-box {
   display: flex;
   width: 450px;
-  border: none;
+
   position: relative;
   height: 60px;
-  background: $background-secondary-dark;
+  background: $background-light;
   border-radius: 15px;
-  /* box-shadow: 0 3px 5px #beb4ff; */
-  color: white;
+  box-shadow: 0 3px 5px #beb4ff;
+  color: $font-dark;
   font-weight: 600;
   cursor: text;
   & input {
+    border: 1px solid $font-dark;
     position: absolute;
-    z-index: 0;
+    /* z-index: 0; */
     width: 450px;
     height: 60px;
     border-radius: 15px;
-    border: none;
-    color: white;
+    color: $font-dark;
     font-weight: 600;
-    background: $background-secondary-dark;
+    background: $background-light;
     padding-left: 60px;
-    &:focus {
+    /*  &:focus {
       outline: none;
       & + .search {
         transform: perspective(400px) rotateY(89deg);
         padding: 3px 0;
         opacity: 0;
       }
-    }
-  }
-  & i.search {
-    height: 20px;
-    width: 20px;
-    border: 5px solid #fff;
-    border-radius: 50%;
-    position: relative;
-    z-index: 1;
-    transform: rotatez(-45deg);
-    top: 18px;
-    left: 5%;
-    transition: 0.2s all;
-    transform-style: preserve-3d;
-    perspective: 400px;
-    &::after {
-      content: "";
-      display: block;
-      width: 5px;
-      height: 15px;
-      background: #fff;
-      position: absolute;
-      left: calc(50% - 2px);
-      border-radius: 10px;
-      top: 101%;
-    }
+    } */
   }
 }
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
+@media (prefers-color-scheme: dark) {
+  .search-box {
+    background: $background-secondary-dark;
+    border: 1px solid $font-ligth;
+    color: white;
+    box-shadow: 0px;
+    & input {
+      border: 1px solid $font-ligth;
+      color: white;
+      background: $background-secondary-dark;
+    }
   }
 }
 

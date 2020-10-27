@@ -1,1 +1,97 @@
 @import "../../../scss/index.scss";
+
+.item-actualizar-pc {
+  color: $font-dark;
+}
+@media (prefers-color-scheme: dark) {
+  .item-actualizar-pc {
+    color: $font-ligth;
+  }
+}
+
+.card-contenedor {
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75) !important;
+}
+
+.search-box-editar {
+  display: flex;
+  width: 450px;
+
+  position: relative;
+  height: 60px;
+  background: $background-light;
+  border-radius: 15px;
+  box-shadow: 0 3px 5px #beb4ff;
+  color: $font-dark;
+  font-weight: 600;
+  cursor: text;
+  & input {
+    border: 1px solid $font-dark;
+    position: absolute;
+    /* z-index: 0; */
+    width: 450px;
+    height: 60px;
+    border-radius: 15px;
+    color: $font-dark;
+    font-weight: 600;
+    background: $background-light;
+    padding-left: 60px;
+    /*  &:focus {
+      outline: none;
+      & + .search {
+        transform: perspective(400px) rotateY(89deg);
+        padding: 3px 0;
+        opacity: 0;
+      }
+    } */
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .search-box-editar {
+    background: $background-secondary-dark;
+    border: 1px solid $font-ligth;
+    color: white;
+    box-shadow: 0px;
+    & input {
+      border: 1px solid $font-ligth;
+      color: white;
+      background: $background-secondary-dark;
+    }
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.contenedor-ver-pc {
+  margin-bottom: 80px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card-header-pc {
+    background: $background-secondary-dark;
+
+    & span {
+      color: $font-ligth;
+    }
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .card-content-pc {
+    background: $background-secondary-dark;
+
+    & p {
+      color: $font-ligth;
+    }
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .card-action-pc {
+    background: $background-secondary-dark;
+  }
+}

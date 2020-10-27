@@ -94,7 +94,7 @@ export default function VerPC() {
             .filter(link => link.estadoVigente === true)
             .map(link =>(
             <div className="col-md-4 col-12" key={link.idKey}>
-              <Card className="w-100 mt-4">
+              <Card className="w-100 mt-4 card-contenedor">
                 <CardHeader
                   className="card-header-pc"
                   avatar={
