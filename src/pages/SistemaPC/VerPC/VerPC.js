@@ -81,8 +81,8 @@ export default function VerPC() {
       <h1 className="text-center my-4">Dispositivos en manteniento.</h1>
 
       <div className="container">
-        <div class="search-box w-100">
-          <input type="text" class="w-100" placeholder="Introduzca el número de serie y/o la marca del dispositivo." onChange={(e)=>{setTerm(e.target.value)}} name="term"/>
+        <div className="search-box w-100">
+          <input type="text" className="w-100" placeholder="Introduzca el número de serie y/o la marca del dispositivo." onChange={(e)=>{setTerm(e.target.value)}} name="term"/>
           {/* <i id="icon" class="search"></i> */}
         </div>
       </div>

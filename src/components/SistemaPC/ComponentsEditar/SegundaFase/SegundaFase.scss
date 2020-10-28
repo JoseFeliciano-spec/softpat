@@ -1,0 +1,19 @@
+@import "../../../../scss/index.scss";
+
+.image-pc {
+  height: 400px;
+  width: 100%;
+  border-radius: 1rem;
+  border: 3px solid $background-dark;
+  border-style: dashed;
+}
+@media (prefers-color-scheme: dark) {
+  .image-pc {
+    border-color: $background-light;
+  }
+}
+.contenedor-img-pc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

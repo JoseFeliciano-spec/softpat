@@ -19,6 +19,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CreateIcon from '@material-ui/icons/Create';
 import moment from 'moment';
 import 'moment/locale/es'  // without this line it didn't work
+import DialogEditarPC from "../../../components/SistemaPC/ComponentsEditar/DialogEditarPC";
 
 const db = firebase.firestore(firebase);
 
@@ -48,8 +49,10 @@ const useStyles = makeStyles((theme) => ({
 export default function EditarPC() {
   const classes = useStyles();
   const [linkDataFormPC, setLinkDataFormPC] = useState([]);
-  const [search, setSearch] = useState("");
+  /* const [search, setSearch] = useState(""); */
   const [term, setTerm] = useState("");
+  const [open, setOpen] = useState(false);
+  const [id, setId] = useState("");
 
   moment.locale();
   /* Para obtener sistemaPC */
@@ -57,7 +60,7 @@ export default function EditarPC() {
     const querySnapshot =  await db.collection("sistemapc").onSnapshot(       (querySnapshot)=>{
       const docs = []
       querySnapshot.forEach(doc => {
-        console.log(doc.data());
+        /* console.log(doc.data()); */
         docs.push({...doc.data(), idKey: doc.id})
       });
       setLinkDataFormPC(docs);
@@ -76,13 +79,18 @@ export default function EditarPC() {
   }, [])
 
   
+  const handlerOpen = (id)=>{
+    setOpen(true);
+    setId(id);
+  };
+
   return (
     <div>
       <h1 className="text-center my-4">Editar Dispositvos.</h1>
 
       <div className="container">
-        <div class="search-box-editar w-100">
-          <input type="text" class="w-100" placeholder="Introduzca el número de serie y/o la marca del dispositivo." onChange={(e)=>{setTerm(e.target.value)}} name="term"/>
+        <div className="search-box-editar w-100">
+          <input type="text" className="w-100" placeholder="Introduzca el número de serie y/o la marca del dispositivo." onChange={(e)=>{setTerm(e.target.value)}} name="term"/>
           {/* <i id="icon" class="search"></i> */}
         </div>
       </div>
@@ -127,7 +135,9 @@ export default function EditarPC() {
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing className="card-action-pc">
-                  <IconButton aria-label="Editar equipos">
+                  <IconButton aria-label="Editar equipos" onClick={()=>{
+                    handlerOpen(link.idKey);
+                  }}>
                     <CreateIcon className="item-actualizar-pc"/>
                   </IconButton>
                   <IconButton aria-label="share">
@@ -139,6 +149,9 @@ export default function EditarPC() {
           ))}
         </div>
       </div>
+
+
+      <DialogEditarPC  id={id} setId={setId}  open={open} setOpen={setOpen}/>
     </div>
   );
 }

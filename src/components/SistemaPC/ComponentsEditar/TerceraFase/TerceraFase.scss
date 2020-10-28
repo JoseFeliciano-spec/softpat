@@ -1,0 +1,118 @@
+@import "../../../../scss/index.scss";
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+  transition: "color 9999s ease-out, background-color 9999s ease-out";
+  transition-delay: 99999s;
+}
+
+.form-select-pf {
+  select {
+    color: #202020 !important;
+  }
+  option {
+    background-color: $background-light !important;
+  }
+  label.Mui-focused {
+    color: #404040 !important;
+  }
+  label {
+    color: #404040 !important;
+  }
+  .MuiInput-underline:after {
+    border-bottom-color: #404040 !important;
+  }
+  .MuiOutlinedInput-root fieldset {
+    border-color: #404040 !important;
+  }
+  .MuiOutlinedInput-root:hover fieldset {
+    border-color: #202020 !important;
+  }
+  .MuiOutlinedInput-root.Mui-focused fieldset {
+    border-color: #202020 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .form-select-pf {
+    select {
+      color: $font-ligth !important;
+    }
+    option {
+      background-color: #202020 !important;
+    }
+    label.Mui-focused {
+      color: #afb9bd !important;
+    }
+    label {
+      color: #afb9bd !important;
+    }
+    .MuiInput-underline:after {
+      border-bottom-color: #afb9bd !important;
+    }
+    .MuiOutlinedInput-root fieldset {
+      border-color: #afb9bd !important;
+    }
+    .MuiOutlinedInput-root:hover fieldset {
+      border-color: #fff !important;
+    }
+    .MuiOutlinedInput-root.Mui-focused fieldset {
+      border-color: #fff !important;
+    }
+  }
+}
+
+.color-input-pc {
+  input {
+    color: #202020 !important;
+  }
+
+  label.Mui-focused {
+    color: #404040 !important;
+  }
+  label {
+    color: #404040 !important;
+  }
+  .MuiInput-underline:after {
+    border-bottom-color: #404040 !important;
+  }
+  .MuiOutlinedInput-root fieldset {
+    border-color: #404040 !important;
+  }
+  .MuiOutlinedInput-root:hover fieldset {
+    border-color: #202020 !important;
+  }
+  .MuiOutlinedInput-root.Mui-focused fieldset {
+    border-color: #202020 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .color-input-pc {
+    input {
+      color: $font-ligth !important;
+    }
+
+    label.Mui-focused {
+      color: #afb9bd !important;
+    }
+    label {
+      color: #afb9bd !important;
+    }
+    .MuiInput-underline:after {
+      border-bottom-color: #afb9bd !important;
+    }
+    .MuiOutlinedInput-root fieldset {
+      border-color: #afb9bd !important;
+    }
+    .MuiOutlinedInput-root:hover fieldset {
+      border-color: #fff !important;
+    }
+    .MuiOutlinedInput-root.Mui-focused fieldset {
+      border-color: #fff !important;
+    }
+  }
+}

@@ -9,7 +9,6 @@
 .search-box {
   display: flex;
   width: 450px;
-
   position: relative;
   height: 60px;
   background: $background-light;
@@ -18,6 +17,9 @@
   color: $font-dark;
   font-weight: 600;
   cursor: text;
+  &:focus {
+    outline: none !important;
+  }
   & input {
     border: 1px solid $font-dark;
     position: absolute;
@@ -29,6 +31,9 @@
     font-weight: 600;
     background: $background-light;
     padding-left: 60px;
+    &:focus {
+      outline: none !important;
+    }
     /*  &:focus {
       outline: none;
       & + .search {
@@ -44,7 +49,7 @@
     background: $background-secondary-dark;
     border: 1px solid $font-ligth;
     color: white;
-    box-shadow: 0px;
+    /* box-shadow: 0px !important; */
     & input {
       border: 1px solid $font-ligth;
       color: white;
