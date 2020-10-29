@@ -3,29 +3,22 @@ import TextField from "@material-ui/core/TextField";
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
 import "./PrimeraFase.scss";
 
 export default function PrimeraFase(props) {
 
   const {dataFormPC, setDataFormPC}  = props;
-
+  /* console.log(dataFormPC.fechaEquipo.toDate()); */
 
   const onChange = (e)=>{
     setDataFormPC({...dataFormPC, [e.target.name] : e.target.value});
     /* console.log(e.target.name + ": " + e.target.value); */
   }
 
-  const onChangeTime = (time)=>{
+  /* const onChangeTime = (time)=>{
     setDataFormPC({...dataFormPC, fechaEquipo: time } )
     console.log(dataFormPC.fechaEquipo);
-  }
+  } */
 
   return (
     <div>
@@ -50,31 +43,13 @@ export default function PrimeraFase(props) {
               </Select>
             </FormControl>
           </div>
-          <div className="col-12 mt-4 mt-md-0 col-md-6">
-            <MuiPickersUtilsProvider className="muipicker" utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              id="date-picker-dialog"
-              label="SELECCIONAR FECHA"
-              format="MM/dd/yyyy"
-              className="date-pc-r w-100"
-              invalidDateMessage="Datos inválidos."
-              maxDateMessage="Supera el tope máximo."
-              name="fechaEquipo"
-              value={new Date(`${dataFormPC.fechaEquipo}`)}
-              onChange={onChangeTime}
-              KeyboardButtonProps={{
-                'aria-label': 'Cambiar los Datos',
-              }}
-            />
-            
-            </MuiPickersUtilsProvider>
-          </div>
-          <div className="col-12">
+          
+          <div className="col-12 col-md-6">
             <TextField
               label="NOMBRE DEL EQUIPO"
               //id="outlined-margin-dense"
               name="nombreEquipo"
-              className="mt-4 color-input-pc w-100"
+              className="color-input-pc w-100"
               variant="outlined"
               onChange={onChange}
               value={dataFormPC.nombreEquipo}

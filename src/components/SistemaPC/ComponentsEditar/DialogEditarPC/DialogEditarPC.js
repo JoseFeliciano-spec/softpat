@@ -49,6 +49,7 @@ export default function DialogEditarPC(props) {
   const { open, setOpen, id, setId } = props;
   const [dataFormPC, setDataFormPC] = useState(dataRegistoPC);
   /* const [data, setData] = useState({}); */
+  const [date, setDate] = useState(new Date());
   const [file, setFile] = useState(null);
   const [banner, setBanner] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
@@ -94,23 +95,23 @@ export default function DialogEditarPC(props) {
         });
      }) */
 
-    if(dataFormPC.tipoComputadora === ''){ ok = false;}
+    if(dataFormPC.tipoComputadora == ''){ ok = false;}
 
-    if(dataFormPC.nombreEquipo === ''){ok = false;}
+    if(dataFormPC.nombreEquipo == ''){ok = false;}
 
-    if(dataFormPC.memoriaRam === ''){ok = false;}
+    if(dataFormPC.memoriaRam == ''){ok = false;}
 
-    if(dataFormPC.resolucionPantalla === ''){ok = false;}
+    if(dataFormPC.resolucionPantalla == ''){ok = false;}
 
-    if(dataFormPC.discoDuro === ''){ok = false;}
+    if(dataFormPC.discoDuro == ''){ok = false;}
 
-    if(dataFormPC.marcaProcesador === ''){ok = false;}
+    if(dataFormPC.marcaProcesador == ''){ok = false;}
 
-    if(dataFormPC.fechaEquipo == null){ok = false;}
+    /* if(dataFormPC.fechaEquipo == null){ok = false;} */
 
-    if(dataFormPC.marca === ''){ok = false;}
+    if(dataFormPC.marca == ''){ok = false;}
 
-    if(dataFormPC.marcaGrafica === ''){ok = false;}
+    if(dataFormPC.marcaGrafica == ''){ok = false;}
 
     if(dataFormPC.estado == ''){ok = false;}
 
@@ -128,45 +129,78 @@ export default function DialogEditarPC(props) {
 
     if(dataFormPC.observaciones == ''){ok = false;}
 
-    if(file == null){ok = false;}
+    /* if(file == null){ok = false;} */
 
     if(!ok){
       toast.warning("Hay campos vacios, revisa todos los campos.");
     }
     
     if(ok){
-      setIsLoad(true);
-      toast.success("Subiendo los datos y la imagen...");
-      uploadImage(dataFormPC.image).then(()=>{
+      if(file !== null){
+        setIsLoad(true);
+        toast.success("Subiendo los datos y la imagen...");
+        uploadImage(dataFormPC.image).then(()=>{
+          db.collection("sistemapc")
+            .doc(id)
+            .update({
+              /* registrador: user.displayName, */
+              /* estadoVigente: true, */
+              tipoComputadora: dataFormPC.tipoComputadora,
+              nombreEquipo: dataFormPC.nombreEquipo,
+              memoriaRam: dataFormPC.memoriaRam,
+              resolucionPantalla: dataFormPC.resolucionPantalla,
+              discoDuro: dataFormPC.discoDuro,
+              marcaProcesador: dataFormPC.marcaProcesador,
+              /* fechaEquipo: dataFormPC.fechaEquipo, */
+              marca: dataFormPC.marca,
+              marcaGrafica: dataFormPC.marcaGrafica,
+              estado: dataFormPC.estado,
+              modelo: dataFormPC.modelo,
+              owned: dataFormPC.owned,
+              lectordvd: dataFormPC.lectordvd,
+              puertohdmi: dataFormPC.puertohdmi,
+              puertousb: dataFormPC.puertousb,
+              /* image: fileName, */
+              observaciones: dataFormPC.observaciones
+            })
+            .then(()=>{
+              toast.success("Se ha actualizado correctamente.");
+              setBanner(null);
+              setIsLoad(false);
+            });
+        })
+      }else{
+        setIsLoad(true);
+        toast.success("Subiendo los datos...");
         db.collection("sistemapc")
-          .doc(id)
-          .update({
-            /* registrador: user.displayName, */
-            /* estadoVigente: true, */
-            tipoComputadora: dataFormPC.tipoComputadora,
-            nombreEquipo: dataFormPC.nombreEquipo,
-            memoriaRam: dataFormPC.memoriaRam,
-            resolucionPantalla: dataFormPC.resolucionPantalla,
-            discoDuro: dataFormPC.discoDuro,
-            marcaProcesador: dataFormPC.marcaProcesador,
-            fechaEquipo: dataFormPC.fechaEquipo,
-            marca: dataFormPC.marca,
-            marcaGrafica: dataFormPC.marcaGrafica,
-            estado: dataFormPC.estado,
-            modelo: dataFormPC.modelo,
-            owned: dataFormPC.owned,
-            lectordvd: dataFormPC.lectordvd,
-            puertohdmi: dataFormPC.puertohdmi,
-            puertousb: dataFormPC.puertousb,
-            /* image: fileName, */
-            observaciones: dataFormPC.observaciones
-          })
-          .then(()=>{
-            toast.success("Se ha actualizado correctamente.")
-            setBanner(null);
-            setIsLoad(false);
-          });
-      })
+            .doc(id)
+            .update({
+              /* registrador: user.displayName, */
+              /* estadoVigente: true, */
+              tipoComputadora: dataFormPC.tipoComputadora,
+              nombreEquipo: dataFormPC.nombreEquipo,
+              memoriaRam: dataFormPC.memoriaRam,
+              resolucionPantalla: dataFormPC.resolucionPantalla,
+              discoDuro: dataFormPC.discoDuro,
+              marcaProcesador: dataFormPC.marcaProcesador,
+              /* fechaEquipo: dataFormPC.fechaEquipo, */
+              marca: dataFormPC.marca,
+              marcaGrafica: dataFormPC.marcaGrafica,
+              estado: dataFormPC.estado,
+              modelo: dataFormPC.modelo,
+              owned: dataFormPC.owned,
+              lectordvd: dataFormPC.lectordvd,
+              puertohdmi: dataFormPC.puertohdmi,
+              puertousb: dataFormPC.puertousb,
+              /* image: fileName, */
+              observaciones: dataFormPC.observaciones
+            })
+            .then(()=>{
+              toast.success("Se ha actualizado correctamente.");
+              /* setBanner(null); */
+              setIsLoad(false);
+            });
+      }
     }
   }
 
