@@ -57,7 +57,7 @@ export default function VerPC() {
     const querySnapshot =  await db.collection("sistemapc").onSnapshot(       (querySnapshot)=>{
       const docs = []
       querySnapshot.forEach(doc => {
-        console.log(doc.data());
+        /* console.log(doc.data()); */
         docs.push({...doc.data(), idKey: doc.id})
       });
       setLinkDataFormPC(docs);

@@ -20,6 +20,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import moment from 'moment';
 import 'moment/locale/es'  // without this line it didn't work
 import DialogEditarPC from "../../../components/SistemaPC/ComponentsEditar/DialogEditarPC";
+import Switch from '@material-ui/core/Switch';
 
 const db = firebase.firestore(firebase);
 
@@ -84,6 +85,15 @@ export default function EditarPC() {
     setId(id);
   };
 
+  const handleChange = (value,id)=>{
+    console.log(value, id);
+     db.collection("sistemapc")
+        .doc(id)
+        .update({
+          estadoVigente: !value,
+        })
+  }
+
   return (
     <div>
       <h1 className="text-center my-4">Editar Dispositvos.</h1>
@@ -99,7 +109,6 @@ export default function EditarPC() {
         <div className="row">
           {linkDataFormPC
             .filter(searchTerm(term))
-            .filter(link => link.estadoVigente === true)
             .map(link =>(
             <div className="col-md-4 col-12" key={link.idKey}>
               <Card className="w-100 mt-4 card-contenedor">
@@ -140,9 +149,12 @@ export default function EditarPC() {
                   }}>
                     <CreateIcon className="item-actualizar-pc"/>
                   </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon className="item-actualizar-pc" />
-                  </IconButton>
+                  <Switch
+                    checked={link.estadoVigente}
+                    onChange={()=>{handleChange(link.estadoVigente, link.idKey)}}
+                    name="checkedA"
+                    inputProps={{ 'aria-label': 'secondary checkbox' }}
+                  />
                 </CardActions>
               </Card>
             </div>
