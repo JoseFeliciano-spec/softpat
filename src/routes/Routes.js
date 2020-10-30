@@ -4,8 +4,8 @@ import BottomBarHome from "../components/Home/BottomBarHome";
 import BottomBarPC from "../components/SistemaPC/BottomBarPC";
 import Nosotros from "../pages/Home/Nosotros";
 /* import SistemaPC from "../pages/SistemaPC/VerPC"; */
-
-import RegistroPC from "../pages/SistemaPC/RegistroPC";
+import Inicio from "../pages/Home/Inicio";
+/* import RegistroPC from "../pages/SistemaPC/RegistroPC"; */
 import EditarPC from "../pages/SistemaPC/EditarPC";
 
 const SistemaPC = lazy(()=>import("../pages/SistemaPC/VerPC"));
@@ -16,8 +16,7 @@ export default function Routes(props) {
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>
         <Route path="/" exact>
-          <h1>Home</h1>
-          <h1>Home</h1>
+          <Inicio/>
           <BottomBarHome />
         </Route>
         <Route path="/nosotros" exact>

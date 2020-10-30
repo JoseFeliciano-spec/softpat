@@ -1,1 +1,90 @@
 @import "../../../scss/index.scss";
+
+section {
+  /* margin-bottom: 50px; */
+  width: 264px;
+  .top-box {
+    background-color: #dfdbd5;
+    width: 263px;
+    height: 103px;
+    position: absolute;
+    z-index: 1;
+  }
+
+  img {
+    background-color: gray;
+    border-radius: 100%;
+    border: 3px soild #d4d4d4;
+    width: 133px;
+    height: 133px;
+    object-fit: cover;
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 15px;
+    z-index: 5;
+  }
+
+  .bottom-box {
+    border-radius: 0.9rem;
+    border: 1px solid $font-dark;
+    box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.16);
+    width: 100%;
+    height: 238px;
+    transform: translateY(-50px);
+    blockquote {
+      margin: 0 auto;
+      padding: 0;
+      width: 210px;
+      p {
+        font-style: italic;
+        font-size: 16px;
+        line-height: 21px;
+        padding-top: 60px;
+        color: $font-dark;
+      }
+    }
+
+    .test-details {
+      text-align: center;
+      span {
+        color: $font-dark;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  section {
+    margin-bottom: 50px;
+    width: 264px;
+    .top-box {
+      background-color: #dfdbd5;
+    }
+
+    img {
+      background-color: gray;
+      border: 3px soild #d4d4d4;
+    }
+
+    .bottom-box {
+      border: 1px solid $font-ligth;
+      blockquote {
+        p {
+          color: $font-ligth;
+        }
+      }
+
+      .test-details {
+        p {
+          color: $font-ligth;
+        }
+        span {
+          color: $font-ligth;
+        }
+      }
+    }
+  }
+}
