@@ -5,6 +5,7 @@ import RegisterForm from "../RegisterForm";
 import LoginForm from "../LoginForm";
 import "./AuthForm.scss";
 import { ToastContainer } from "react-toastify";
+import Typewriter from 'typewriter-effect';
 //import { toast } from "react-toastify";
 //import { setEmail, getEmail } from "../../../utils/ema../../../utils/email";
 
@@ -29,7 +30,15 @@ export default function AuthForm() {
             <div className="container">
               <div className="row">
                 <div className="col-12">
-                  <h1 className="text-center mb-3">Bienvenidos a softpat</h1>
+                  <h1 className="text-center mb-3">
+                    <Typewriter
+                      options={{
+                        strings: ['Bienvenidos a SoftPat', 'La mejor empresa de gestión de hojas de vida', 'Pensamos en tí y en tu comodidad'],
+                        autoStart: true,
+                        loop: true,
+                      }}
+                    />
+                  </h1>
                   <Button
                     className="button-principal mt-5"
                     variant="contained"
