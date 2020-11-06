@@ -49,7 +49,7 @@ export default function PrimeraFase(props) {
               label="NOMBRE DEL EQUIPO"
               //id="outlined-margin-dense"
               name="nombreEquipo"
-              className="color-input-pc w-100"
+              className="color-input-pc w-100 mt-4 mt-md-0"
               variant="outlined"
               onChange={onChange}
               value={dataFormPC.nombreEquipo}
