@@ -1,5 +1,17 @@
 @import "../../scss/index.scss";
 
+.contenido-image{
+  display: flex;
+  justify-content: center;
+}
+.avatar-user{
+  width: 150px!important;
+  height: 150px!important;
+}
+.event-user{
+  font-size: 5rem;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

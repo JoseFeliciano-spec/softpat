@@ -38,7 +38,7 @@ const salir = () => {
 };
 
 export default function LoggedLayout(props) {
-  const { user } = props;
+  const { user, setRealoadApp } = props;
 
   const classes = useStyles();
 
@@ -81,7 +81,7 @@ export default function LoggedLayout(props) {
                 <Avatar className="avatar-app">
                   {user.displayName.charAt(0)}
                 </Avatar> :
-                <h1>h</h1>
+                <Avatar src={user.photoURL} />
               }
             </Button>
           </Toolbar>
@@ -94,7 +94,7 @@ export default function LoggedLayout(props) {
         </Grid>
       </Grid>
       <MenuLeft boton={boton} setBoton={setBoton} />
-      <DialogUser open={open} setOpen={setOpen} user={user} />
+      <DialogUser setRealoadApp={setRealoadApp} open={open} setOpen={setOpen} user={user} />
     </Router>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Auth from "./pages/Auth";
 import "./App.scss";
 import firebase from "./utils/Firebase";
@@ -30,19 +30,19 @@ const salir = () => {
 };
 
 function App() {
-
+  const [reloadapp, setRealoadApp] = useState(false);
   firebase.auth().onAuthStateChanged((cliente) => {
     if (cliente?.emailVerified) {
       //setUser(cliente);
       /* console.log("usuario logeado");
       console.log(cliente); */
       ReactDOM.render(
-        <LoggedLayout user={cliente} />,
+        <LoggedLayout user={cliente} setRealoadApp={setRealoadApp} />,
         document.getElementById("root")
       );
     } else if (!cliente?.emailVerified) {
       firebase.auth().signOut();
-      console.log("usuario no logeado");
+      /* console.log("usuario no logeado"); */
       ReactDOM.render(<Auth />, document.getElementById("root"));
     }
   });
