@@ -30,23 +30,23 @@ const salir = () => {
 };
 
 function App() {
-  
-    firebase.auth().onAuthStateChanged((cliente) => {
-      if (cliente?.emailVerified) {
-        //setUser(cliente);
-        console.log("usuario logeado");
-        console.log(cliente);
-        ReactDOM.render(
-          <LoggedLayout user={cliente} />,
-          document.getElementById("root")
-        );
-      } else if (!cliente?.emailVerified) {
-        firebase.auth().signOut();
-        console.log("usuario no logeado");
-        ReactDOM.render(<Auth />, document.getElementById("root"));
-      }
-    });
-  
+
+  firebase.auth().onAuthStateChanged((cliente) => {
+    if (cliente?.emailVerified) {
+      //setUser(cliente);
+      /* console.log("usuario logeado");
+      console.log(cliente); */
+      ReactDOM.render(
+        <LoggedLayout user={cliente} />,
+        document.getElementById("root")
+      );
+    } else if (!cliente?.emailVerified) {
+      firebase.auth().signOut();
+      console.log("usuario no logeado");
+      ReactDOM.render(<Auth />, document.getElementById("root"));
+    }
+  });
+
 
   return (
     <>

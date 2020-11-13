@@ -59,7 +59,7 @@ export default function LoginForm(props) {
 
   const onChange = (e) => {
     setDataForm({ ...dataForm, [e.target.name]: e.target.value });
-    console.log(dataForm);
+    /* console.log(dataForm); */
   };
 
   const onSubmit = () => {

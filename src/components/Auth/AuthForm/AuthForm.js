@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import RegisterForm from "../RegisterForm";
@@ -8,6 +8,11 @@ import { ToastContainer } from "react-toastify";
 import Typewriter from 'typewriter-effect';
 //import { toast } from "react-toastify";
 //import { setEmail, getEmail } from "../../../utils/ema../../../utils/email";
+import BackgroundSlider from 'react-background-slider'
+import firebase from '../../../utils/Firebase';
+import "firebase/storage";
+import inicio from '../../../assets/jpg/inicio.jpg';
+import inicio2 from '../../../assets/jpg/inicio2.jpg';
 
 export default function AuthForm() {
   //Hook para abrir el registro
@@ -21,10 +26,22 @@ export default function AuthForm() {
     setOpen2(!open2);
   };
 
+  const fondos = () => {
+
+  };
+
+  useEffect(() => {
+    fondos();
+  }, [])
+
   return (
     <div>
       <Grid container>
-        <Grid item xs={12} md={6} className="background-principal"></Grid>
+        <Grid item xs={12} md={6} className="background-principal">
+          <BackgroundSlider
+            images={[inicio, inicio2]}
+            duration={10} transition={2} />
+        </Grid>
         <Grid item xs={12} md={6} className="background-secundario">
           <div className="background-secundario__box">
             <div className="container">
@@ -33,7 +50,7 @@ export default function AuthForm() {
                   <h1 className="text-center mb-3">
                     <Typewriter
                       options={{
-                        strings: ['Bienvenidos a SoftPat', 'La mejor empresa de gestión de hojas de vida', 'Pensamos en tí y en tu comodidad'],
+                        strings: ['Bienvenidos a SoftPat', 'SoftPat Es Seguro', 'SoftPat Es Confiable', 'Descuento del 20%'],
                         autoStart: true,
                         loop: true,
                       }}

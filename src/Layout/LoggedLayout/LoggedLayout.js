@@ -16,6 +16,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "../../routes/Routes";
 /* import RegistroPC from "../../pages/SistemaPC/RegistroPC"; */
 import Avatar from '@material-ui/core/Avatar';
+import DialogUser from '../../components/DialogUser';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,23 +39,25 @@ const salir = () => {
 
 export default function LoggedLayout(props) {
   const { user } = props;
-  console.log(user);
+
   const classes = useStyles();
 
   const [value, setValue] = React.useState("/");
 
   const [boton, setBoton] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const handleChange = (event, newValue) => {
+  /* const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
+  }; */
 
   const handleMenuLeft = () => {
     setBoton(!boton);
   };
 
-  
-
+  const handlerDialogUser = () => {
+    setOpen(true);
+  };
 
   return (
     <Router>
@@ -73,12 +76,12 @@ export default function LoggedLayout(props) {
             <Typography variant="h6" className="titulo">
               SoftPat
             </Typography>
-            <Button color="inherit" className="" onClick={salir}>
-              {!user.photoURL ? 
-              <Avatar className="avatar-app">
-                {user.displayName.charAt(0)}
-              </Avatar> : 
-              <h1>h</h1>
+            <Button color="inherit" className="" onClick={handlerDialogUser}>
+              {!user.photoURL ?
+                <Avatar className="avatar-app">
+                  {user.displayName.charAt(0)}
+                </Avatar> :
+                <h1>h</h1>
               }
             </Button>
           </Toolbar>
@@ -91,6 +94,7 @@ export default function LoggedLayout(props) {
         </Grid>
       </Grid>
       <MenuLeft boton={boton} setBoton={setBoton} />
+      <DialogUser open={open} setOpen={setOpen} user={user} />
     </Router>
   );
 }

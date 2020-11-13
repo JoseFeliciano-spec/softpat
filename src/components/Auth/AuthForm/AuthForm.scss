@@ -16,7 +16,10 @@ h1 {
 }
 
 .background-principal {
-  background: $background-principal;
+  /* background-image: url('../../../assets/jpg/inicio.jpg'); */
+  background-color: rgba(0, 0, 0, 0.52);
+  background-blend-mode: soft-light;
+  /* opacity: 0.2; */
   min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
