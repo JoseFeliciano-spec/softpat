@@ -13,6 +13,7 @@ import firebase from '../../../utils/Firebase';
 import "firebase/storage";
 import inicio from '../../../assets/jpg/inicio.jpg';
 import inicio2 from '../../../assets/jpg/inicio2.jpg';
+import logo from "../../../assets/png/logo2.png";
 
 export default function AuthForm() {
   //Hook para abrir el registro
@@ -38,6 +39,7 @@ export default function AuthForm() {
     <div>
       <Grid container>
         <Grid item xs={12} md={6} className="background-principal">
+          <img src={logo} className="imagen-logo" />
           <BackgroundSlider
             images={[inicio, inicio2]}
             duration={10} transition={2} />
@@ -50,7 +52,7 @@ export default function AuthForm() {
                   <h1 className="text-center mb-3">
                     <Typewriter
                       options={{
-                        strings: ['Bienvenidos a SoftPat', 'SoftPat Es Seguro', 'SoftPat Es Confiable', 'Descuento del 20%'],
+                        strings: ['Bienvenidos a SoftPat', 'SoftPat Es Seguro', 'SoftPat Es Confiable', 'Descuento del 20%', 'El 3 nos hizo fuertes'],
                         autoStart: true,
                         loop: true,
                       }}

@@ -17,6 +17,7 @@ import Routes from "../../routes/Routes";
 /* import RegistroPC from "../../pages/SistemaPC/RegistroPC"; */
 import Avatar from '@material-ui/core/Avatar';
 import DialogUser from '../../components/DialogUser';
+import { ToastContainer } from "react-toastify";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +39,7 @@ const salir = () => {
 };
 
 export default function LoggedLayout(props) {
-  const { user, setRealoadApp } = props;
+  const { user } = props;
 
   const classes = useStyles();
 
@@ -94,7 +95,18 @@ export default function LoggedLayout(props) {
         </Grid>
       </Grid>
       <MenuLeft boton={boton} setBoton={setBoton} />
-      <DialogUser setRealoadApp={setRealoadApp} open={open} setOpen={setOpen} user={user} />
+      <DialogUser open={open} setOpen={setOpen} user={user} />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={6000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Router>
   );
 }

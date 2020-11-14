@@ -30,14 +30,14 @@ const salir = () => {
 };
 
 function App() {
-  const [reloadapp, setRealoadApp] = useState(false);
+
   firebase.auth().onAuthStateChanged((cliente) => {
     if (cliente?.emailVerified) {
       //setUser(cliente);
       /* console.log("usuario logeado");
       console.log(cliente); */
       ReactDOM.render(
-        <LoggedLayout user={cliente} setRealoadApp={setRealoadApp} />,
+        <LoggedLayout user={cliente} />,
         document.getElementById("root")
       );
     } else if (!cliente?.emailVerified) {

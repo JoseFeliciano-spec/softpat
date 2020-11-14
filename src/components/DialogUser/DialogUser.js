@@ -2,34 +2,45 @@ import React, { useState, useCallback } from 'react';
 import "./DialogUser.scss";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-/* import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputLabel from "@material-ui/core/InputLabel";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import FormControl from "@material-ui/core/FormControl"; */
 import Slide from "@material-ui/core/Slide";
 import Button from "@material-ui/core/Button";
-/*import IconButton from "@material-ui/core/IconButton";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";*/
 import firebase from "../../utils/Firebase";
+import TextField from "@material-ui/core/TextField";
 import "firebase/auth";
 import "firebase/storage";
-/* import validarCorreo from "../../../utils/ValidarCorreo"; */
 import { toast } from "react-toastify";
+import IconButton from '@material-ui/core/IconButton';
+import CreateIcon from '@material-ui/icons/Create';
 import Avatar from '@material-ui/core/Avatar';
 import { useDropzone } from 'react-dropzone';
+import SendIcon from '@material-ui/icons/Send';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const salirLogout = () => {
+    firebase.auth().signOut();
+}
+
 export default function DialogUser(props) {
-    const { open, setOpen, user, setRealoadApp } = props;
+    const { open, setOpen, user } = props;
+
+    const datosUser = () => {
+        return {
+            nombre: user.displayName
+        }
+    };
+
+    /* Datos del usuario */
+    const [datosU, setDatosU] = useState(datosUser);
+
     /* Imagenes */
     const [file, setFile] = useState(null);
+
+    const [estado, setEstado] = useState(trueOrFalse());
+
     const [banner, setBanner] = useState(null);
     const onDrop = useCallback(acceptedFile => {
         const file = acceptedFile[0];
@@ -59,7 +70,7 @@ export default function DialogUser(props) {
                     .updateProfile({
                         photoURL: response
                     })
-                setRealoadApp(result => !result);
+                /* setRealoadApp(result => !result); */
             }).catch(() => {
                 console.log("No se ha actualizado");
             });
@@ -72,6 +83,24 @@ export default function DialogUser(props) {
             .child(`avatar/${user.uid}`);
         return ref.put(file);
     };
+
+    const onChange = (e) => {
+        setDatosU({ ...datosU, [e.target.name]: e.target.value });
+    }
+
+
+    const updateName = () => {
+        firebase
+            .auth()
+            .currentUser
+            .updateProfile({
+                displayName: datosU.nombre
+            })
+            .then(() => {
+                toast.success("Se ha actualizado el nombre.");
+                /* setOpen(!open);                */
+            });
+    }
 
     return (
         <div>
@@ -111,10 +140,63 @@ export default function DialogUser(props) {
                                     <h2 className="text-center">Bienvenido {user.displayName}</h2>
                                 </div>
                             </div>
+                            <div className="col-12">
+                                <TextField
+                                    label="Editar Su Nombre"
+                                    //id="outlined-margin-dense"
+                                    disabled={estado.nombre}
+                                    name="nombre"
+                                    className="mt-4 color-input-r w-100"
+                                    variant="outlined"
+                                    onChange={onChange}
+                                    value={
+                                        datosU.nombre
+                                    }
+                                />
+                                <IconButton
+                                    aria-label="Editar nombre"
+                                    onClick={
+                                        () => {
+                                            setEstado(
+                                                { ...estado, nombre: !estado.nombre }
+                                            )
+                                        }
+                                    }
+                                >
+                                    <CreateIcon className="item-actualizar-pc" />
+                                </IconButton>
+
+
+                                <IconButton
+                                    aria-label="Enviar nombre"
+                                    onClick={updateName}
+                                >
+                                    <SendIcon className="item-actualizar-pc" />
+                                </IconButton>
+
+                            </div>
+                            <div className="col-12 mt-4 mb-3">
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    fullWidth={true}
+                                    className="button-salir "
+                                    onClick={salirLogout}
+                                >
+                                    Cerrar sesión
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </DialogContent>
             </Dialog>
         </div>
     )
+}
+
+
+function trueOrFalse() {
+    return {
+        nombre: false,
+    }
 }

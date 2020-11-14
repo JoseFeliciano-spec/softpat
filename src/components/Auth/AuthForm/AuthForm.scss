@@ -15,6 +15,12 @@ h1 {
   }
 }
 
+.imagen-logo{
+  width: 350px;
+  height: 350px;
+  margin-top: 27vh;
+  /* margin: 0 auto; */
+}
 .background-principal {
   /* background-image: url('../../../assets/jpg/inicio.jpg'); */
   background-color: rgba(0, 0, 0, 0.52);
@@ -23,6 +29,9 @@ h1 {
   min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 @media screen and (max-width: 959px) {
   .background-principal {
