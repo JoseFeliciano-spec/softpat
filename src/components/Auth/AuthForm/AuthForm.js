@@ -13,6 +13,8 @@ import firebase from '../../../utils/Firebase';
 import "firebase/storage";
 import inicio from '../../../assets/jpg/inicio.jpg';
 import inicio2 from '../../../assets/jpg/inicio2.jpg';
+import inicio3 from '../../../assets/jpg/inicio3.jpg';
+import inicio4 from '../../../assets/jpg/inicio4.jpg';
 import logo from "../../../assets/png/logo2.png";
 
 export default function AuthForm() {
@@ -41,7 +43,7 @@ export default function AuthForm() {
         <Grid item xs={12} md={6} className="background-principal">
           <img src={logo} className="imagen-logo" />
           <BackgroundSlider
-            images={[inicio, inicio2]}
+            images={[inicio, inicio2, inicio3, inicio4]}
             duration={10} transition={2} />
         </Grid>
         <Grid item xs={12} md={6} className="background-secundario">
@@ -52,7 +54,7 @@ export default function AuthForm() {
                   <h1 className="text-center mb-3">
                     <Typewriter
                       options={{
-                        strings: ['Bienvenidos a SoftPat', 'SoftPat Es Seguro', 'SoftPat Es Confiable', 'Descuento del 20%', 'El 3 nos hizo fuertes'],
+                        strings: ['Bienvenidos a SoftPat', 'SoftPat Es Seguro', 'SoftPat Es Confiable', 'Descuento del 20%', 'Gracias Profe Mario'],
                         autoStart: true,
                         loop: true,
                       }}
