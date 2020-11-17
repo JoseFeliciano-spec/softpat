@@ -1,0 +1,26 @@
+@import '../../scss/index.scss';
+
+.error-404{
+    /* width: 100%; */
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button-principal-error {
+    padding: 0.8rem !important;
+    width: 400px;
+    background: $background-principal !important;
+    border-radius: 20rem !important;
+    &:focus {
+      outline: none !important;
+    }
+  }
+
+.spinner-404{
+    color: $background-principal !important;
+    width: 110px !important;
+    height: 110px !important;
+}

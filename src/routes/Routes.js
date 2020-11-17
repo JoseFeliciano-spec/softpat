@@ -9,8 +9,9 @@ import Inicio from "../pages/Home/Inicio";
 import EditarPC from "../pages/SistemaPC/EditarPC";
 import firebase from "../utils/Firebase";
 import "firebase/firestore";
+import Error from "../pages/Error";
 
-const SistemaPC = lazy(()=>import("../pages/SistemaPC/VerPC"));
+const SistemaPC = lazy(() => import("../pages/SistemaPC/VerPC"));
 
 const db = firebase.firestore(firebase);
 
@@ -20,11 +21,11 @@ export default function Routes(props) {
   /* console.log(user.uid); */
 
 
-  const existeAdmin = async ()=>{
+  const existeAdmin = async () => {
     const hola = await db.collection("admin").doc(user.uid)
-    .onSnapshot(function(value){
-      setAdmin(value.exists);
-    });
+      .onSnapshot(function (value) {
+        setAdmin(value.exists);
+      });
     /* console.log(hola.exists); */
   };
 
@@ -33,10 +34,10 @@ export default function Routes(props) {
   }, [])
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Cargando...</div>}>
       <Switch>
         <Route path="/" exact>
-          <Inicio/>
+          <Inicio user={user} />
           <BottomBarHome />
         </Route>
         <Route path="/nosotros" exact>
@@ -48,7 +49,7 @@ export default function Routes(props) {
           <BottomBarPC open={open} setOpen={setOpen} user={user} />
         </Route>
         {
-          adminZone&&(
+          adminZone && (
             <Route path="/sistema-computo/editar" exact>
               <EditarPC />
               <BottomBarPC open={open} setOpen={setOpen} user={user} />
@@ -56,7 +57,7 @@ export default function Routes(props) {
           )
         }
         <Route path="*">
-          <h1>Error 404</h1>
+          <Error />
         </Route>
       </Switch>
     </Suspense>

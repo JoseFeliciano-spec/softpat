@@ -67,7 +67,7 @@ export default function LoggedLayout(props) {
           <Toolbar>
             <IconButton
               edge="start"
-              className=""
+              className="boton-bar"
               color="inherit"
               aria-label="menu"
               onClick={handleMenuLeft}
@@ -77,7 +77,7 @@ export default function LoggedLayout(props) {
             <Typography variant="h6" className="titulo">
               SoftPat
             </Typography>
-            <Button color="inherit" className="" onClick={handlerDialogUser}>
+            <Button color="inherit" className="boton-bar" onClick={handlerDialogUser}>
               {!user.photoURL ?
                 <Avatar className="avatar-app">
                   {user.displayName.charAt(0)}

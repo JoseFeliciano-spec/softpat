@@ -2,6 +2,9 @@
 
 .item-actualizar-pc {
   color: $font-dark;
+  &:focus {
+    outline: none !important;
+  }
 }
 @media (prefers-color-scheme: dark) {
   .item-actualizar-pc {

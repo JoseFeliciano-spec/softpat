@@ -35,25 +35,25 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  /* Cambiar el background del dialog de la fecha registro. */
+/* @media (prefers-color-scheme: dark) {
+  
   .MuiPickersBasePicker-pickerView {
     background: #202020 !important;
 
-    /* Cambiar los colores de los dias */
+  
     .MuiPickersCalendarHeader-dayLabel {
       color: $font-ligth;
     }
-    /* Cambiar la tipografia de los dias */
+  
     .MuiTypography-colorInherit {
       color: $font-ligth;
     }
   }
-  /* Footer */
+  
   .MuiDialogActions-root {
     background: #202020;
   }
-  /* Header */
+  
   .MuiPickersCalendarHeader-switchHeader .MuiIconButton-root {
     background: #202020;
   }
@@ -61,7 +61,8 @@
   .MuiPickersCalendarHeader-switchHeader .MuiSvgIcon-root {
     fill: $font-ligth;
   }
-}
+}*/
+
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

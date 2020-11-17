@@ -1,1 +1,19 @@
 @import "../../../scss/index.scss";
+
+
+.contenedor-final{
+    width: 700px!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-write{
+    color: $font-dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    .top-write{
+        color: $font-ligth;
+    }
+}

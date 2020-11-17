@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import RegisterForm from "../RegisterForm";
@@ -29,13 +29,7 @@ export default function AuthForm() {
     setOpen2(!open2);
   };
 
-  const fondos = () => {
 
-  };
-
-  useEffect(() => {
-    fondos();
-  }, [])
 
   return (
     <div>

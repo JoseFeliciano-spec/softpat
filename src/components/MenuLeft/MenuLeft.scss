@@ -15,6 +15,9 @@
 
 .theme-icon {
   color: $font-dark !important;
+  &:focus {
+    outline: none !important;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

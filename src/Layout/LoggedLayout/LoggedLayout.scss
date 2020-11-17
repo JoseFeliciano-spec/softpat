@@ -4,6 +4,12 @@
   color: $font-dark !important;
 }
 
+.boton-bar{
+  &:focus {
+    outline: none !important;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .MuiBottomNavigationAction-root {
     color: $font-ligth !important;

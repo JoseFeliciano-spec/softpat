@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./RegistroPC.scss";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -49,7 +49,7 @@ export default function RegistroPC(props) {
   const { open, setOpen, user } = props;
 
   /* console.log(user); */
-
+  const [activeStep, setActiveStep] = React.useState(0);
   const [dataFormPC, setDataFormPC] = useState(dataRegistoPC());
   const [file, setFile] = useState(null);
   const [banner, setBanner] = useState(null);
@@ -60,70 +60,70 @@ export default function RegistroPC(props) {
     setOpen(!open);
   };
 
-  const uploadImage = (fileName)=>{
+  const uploadImage = (fileName) => {
     const ref = firebase.storage().ref().child(`sistemapc/${fileName}`);
 
     return ref.put(file);
   };
 
 
-  async function onSubmit(){
+  async function onSubmit() {
     let ok = true;
     /* Código para saber si el noSerie está ocupado */
     await db.collection("sistemapc").where("noSerie", "==", dataFormPC.noSerie)
-      .get().then(function(querySnapshot){
-        querySnapshot.forEach(function(doc) {
+      .get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
           toast.warning("El noSerie está en uso.");
           ok = false;
           console.log(ok);
         });
-     })
+      })
 
-    if(dataFormPC.tipoComputadora === ''){ ok = false;}
+    if (dataFormPC.tipoComputadora === '') { ok = false; }
 
-    if(dataFormPC.nombreEquipo === ''){ok = false;}
+    if (dataFormPC.nombreEquipo === '') { ok = false; }
 
-    if(dataFormPC.memoriaRam === ''){ok = false;}
+    if (dataFormPC.memoriaRam === '') { ok = false; }
 
-    if(dataFormPC.resolucionPantalla === ''){ok = false;}
+    if (dataFormPC.resolucionPantalla === '') { ok = false; }
 
-    if(dataFormPC.discoDuro === ''){ok = false;}
+    if (dataFormPC.discoDuro === '') { ok = false; }
 
-    if(dataFormPC.marcaProcesador === ''){ok = false;}
+    if (dataFormPC.marcaProcesador === '') { ok = false; }
 
-    if(dataFormPC.fechaEquipo == null){ok = false;}
+    if (dataFormPC.fechaEquipo == null) { ok = false; }
 
-    if(dataFormPC.marca === ''){ok = false;}
+    if (dataFormPC.marca === '') { ok = false; }
 
-    if(dataFormPC.marcaGrafica === ''){ok = false;}
+    if (dataFormPC.marcaGrafica === '') { ok = false; }
 
-    if(dataFormPC.estado == ''){ok = false;}
+    if (dataFormPC.estado == '') { ok = false; }
 
-    if(dataFormPC.modelo == ''){ok = false;}
+    if (dataFormPC.modelo == '') { ok = false; }
 
-    if(dataFormPC.noSerie == ''){ok = false;}
+    if (dataFormPC.noSerie == '') { ok = false; }
 
-    if(dataFormPC.owned == ''){ok = false;}
+    if (dataFormPC.owned == '') { ok = false; }
 
-    if(dataFormPC.lectordvd == ''){ok = false;}
+    if (dataFormPC.lectordvd == '') { ok = false; }
 
-    if(dataFormPC.puertohdmi == ''){ok = false;}
+    if (dataFormPC.puertohdmi == '') { ok = false; }
 
-    if(dataFormPC.puertousb == ''){ok = false;}
+    if (dataFormPC.puertousb == '') { ok = false; }
 
-    if(dataFormPC.observaciones == ''){ok = false;}
+    if (dataFormPC.observaciones == '') { ok = false; }
 
-    if(file == null){ok = false;}
+    if (file == null) { ok = false; }
 
-    if(!ok){
+    if (!ok) {
       toast.warning("Hay campos vacios, revisa todos los campos.");
     }
-    
-    if(ok){
+
+    if (ok) {
       setIsLoad(true);
       toast.success("Subiendo los datos y la imagen...");
       const fileName = uuidv4();
-      uploadImage(fileName).then(()=>{
+      uploadImage(fileName).then(() => {
         db.collection("sistemapc")
           .add({
             registrador: user.displayName,
@@ -147,9 +147,12 @@ export default function RegistroPC(props) {
             image: fileName,
             observaciones: dataFormPC.observaciones
           })
-          .then(()=>{
+          .then(() => {
             toast.success("Se ha registrado correctamente")
             setIsLoad(false);
+            setDataFormPC(dataRegistoPC);
+            setActiveStep(0);
+            setFile(null);
           });
       })
     }
@@ -158,8 +161,8 @@ export default function RegistroPC(props) {
   /* const onSubmit = ()=>{
     
   } */
-    
-  const getStepContent = (stepIndex)=> {
+
+  const getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
         return <PrimeraFase banner={banner} setBanner={setBanner} file={file} setFile={setFile} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
@@ -173,7 +176,7 @@ export default function RegistroPC(props) {
   }
 
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+
   const steps = getSteps();
 
   const handleNext = () => {
@@ -208,46 +211,46 @@ export default function RegistroPC(props) {
               ))}
             </Stepper>
             <div>
-              
+
+              <div>
+                <Typography
+                  className={classes.instructions}
+                  component={"span"}
+                  variant={"body2"}
+                >
+                  {getStepContent(activeStep)}
+                </Typography>
                 <div>
-                  <Typography
-                    className={classes.instructions}
-                    component={"span"}
-                    variant={"body2"}
+                  <Button
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    /* disabled={isLoad == true} */
+                    className="buttonColorBack"
                   >
-                    {getStepContent(activeStep)}
-                  </Typography>
-                  <div>
-                    <Button
-                      disabled={activeStep === 0}
-                      onClick={handleBack}
-                      /* disabled={isLoad == true} */
-                      className="buttonColorBack"
-                    >
-                      Atrás
+                    Atrás
                     </Button>
-                    {activeStep === steps.length - 1 ? 
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className="mt-3 mb-3"
-                        disabled={isLoad == true}
-                        onClick={onSubmit}
-                      >
-                        Registrar
+                  {activeStep === steps.length - 1 ?
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className="mt-3 mb-3"
+                      disabled={isLoad == true}
+                      onClick={onSubmit}
+                    >
+                      Registrar
                       </Button> :
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className="mt-3 mb-3"
-                        onClick={handleNext}
-                      >
-                        Siguiente
-                      </Button> 
-                    }
-                  </div>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className="mt-3 mb-3"
+                      onClick={handleNext}
+                    >
+                      Siguiente
+                      </Button>
+                  }
                 </div>
-              
+              </div>
+
             </div>
           </div>
         </DialogContent>
@@ -266,14 +269,14 @@ function dataRegistoPC() {
     marcaProcesador: "",
     fechaEquipo: new Date(),
     marca: "",
-    marcaGrafica:"",
+    marcaGrafica: "",
     estado: "",
     modelo: "",
     noSerie: "",
     owned: "",
-    lectordvd:"",
-    puertohdmi:"",
-    puertousb:"",
-    observaciones:""
+    lectordvd: "",
+    puertohdmi: "",
+    puertousb: "",
+    observaciones: ""
   };
 }

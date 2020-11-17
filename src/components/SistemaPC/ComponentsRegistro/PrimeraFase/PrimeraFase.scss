@@ -48,7 +48,12 @@
     .MuiTypography-colorInherit {
       color: $font-ligth;
     }
+
   }
+  .MuiPaper-root{
+    color: $font-ligth!important;
+  }
+  
   /* Footer */
   .MuiDialogActions-root {
     background: #202020;

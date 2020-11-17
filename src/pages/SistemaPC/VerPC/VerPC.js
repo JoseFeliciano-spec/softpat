@@ -60,7 +60,7 @@ export default function VerPC() {
 
   function searchTerm(term) {
     return function (x) {
-      return (x.marca.toLowerCase().includes(term.toLowerCase())) || (x.noSerie.includes(term)) || !term;
+      return (x.registrador.includes(term)) || (x.marca.toLowerCase().includes(term.toLowerCase())) || (x.noSerie.includes(term)) || !term;
     }
   };
 
@@ -76,7 +76,7 @@ export default function VerPC() {
 
       <div className="container">
         <div className="search-box w-100">
-          <input type="text" className="w-100" placeholder="Introduzca el número de serie y/o la marca del dispositivo." onChange={(e) => { setTerm(e.target.value) }} name="term" />
+          <input type="text" className="w-100" placeholder="Introduzca algún dato del equipo." onChange={(e) => { setTerm(e.target.value) }} name="term" />
           {/* <i id="icon" class="search"></i> */}
         </div>
       </div>
