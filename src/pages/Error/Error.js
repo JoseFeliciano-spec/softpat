@@ -24,8 +24,9 @@ function Error() {
     }
 
     return (
-        <div className="error-404">
+        <div className="error-404 container">
             <h1 className="text-center">Error 404 - Página no encontrada</h1>
+
             {
                 !estado404
                     ? <CircularProgress className="spinner-404" />
@@ -36,9 +37,11 @@ function Error() {
                         onClick={onClick}
                     >
                         Volver
-                  </Button>
+                            </Button>
             }
+
         </div>
+
     )
 }
 export default withRouter(Error);

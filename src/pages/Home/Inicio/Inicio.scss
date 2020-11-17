@@ -1,11 +1,14 @@
 @import "../../../scss/index.scss";
 
 
-.contenedor-final{
-    width: 700px!important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+@media screen and (min-width: 768px){
+    .contenedor-final{
+        width: 700px!important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }    
 }
 
 .top-write{
