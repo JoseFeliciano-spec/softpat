@@ -24,24 +24,31 @@ function Error() {
     }
 
     return (
-        <div className="error-404 container">
-            <h1 className="text-center">Error 404 - Página no encontrada</h1>
-
-            {
-                !estado404
-                    ? <CircularProgress className="spinner-404" />
-                    : <Button
-                        className="button-principal-error mt-2"
-                        variant="contained"
-                        color="primary"
-                        onClick={onClick}
-                    >
-                        Volver
-                            </Button>
-            }
-
+        <div className="error-404">
+            <div className="error-404__box">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <h1 className="text-center">Error 404 - Página no encontrada</  h1>
+                        </div>
+                        <div className="col-12">
+                            {
+                                !estado404
+                                    ? <CircularProgress className="spinner-404" />
+                                    : <Button
+                                        className="button-principal-error mt-2"
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={onClick}
+                                    >
+                                        Volver
+                                    </Button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     )
 }
 export default withRouter(Error);

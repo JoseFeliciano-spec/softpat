@@ -7,6 +7,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    &__box {
+      width: 450px;
+      height: 450px;
+      align-items: center;
+      justify-content: center;
+      //background-color: green;
+      display: flex;
+      flex-direction: column;
+    }
 }
 
 .button-principal-error {
@@ -23,4 +32,5 @@
     color: $background-principal !important;
     width: 110px !important;
     height: 110px !important;
+    margin-left: 9.5rem;
 }
