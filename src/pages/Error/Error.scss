@@ -8,29 +8,50 @@
     align-items: center;
     flex-direction: column;
     &__box {
-      width: 450px;
-      height: 450px;
+      width: 300px;
+      height: 300px;
       align-items: center;
       justify-content: center;
       //background-color: green;
       display: flex;
       flex-direction: column;
     }
+    @media screen and (min-width: 768px){
+      &__box {
+        width: 450px;
+        height: 450px;
+        align-items: center;
+        justify-content: center;
+        //background-color: green;
+        display: flex;
+        flex-direction: column;
+      }
+    }
 }
 
 .button-principal-error {
     padding: 0.8rem !important;
+    width: 320px;
+    background: $background-principal !important;
+    border-radius: 20rem !important;
+    &:focus {
+      outline: none !important;
+    }
+}
+@media screen and (min-width: 768px){
+  .button-principal-error {
     width: 400px;
     background: $background-principal !important;
     border-radius: 20rem !important;
     &:focus {
       outline: none !important;
     }
-  }
+  } 
+}
+
 
 .spinner-404{
     color: $background-principal !important;
     width: 110px !important;
     height: 110px !important;
-    margin-left: 9.5rem;
 }
