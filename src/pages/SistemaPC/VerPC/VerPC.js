@@ -76,7 +76,7 @@ export default function VerPC() {
 
       <div className="container">
         <div className="search-box w-100">
-          <input type="text" className="w-100" placeholder="Introduzca algún dato del equipo." onChange={(e) => { setTerm(e.target.value) }} name="term" />
+          <input type="text" className="search-box__input w-100" placeholder="Introduzca algún dato del equipo." onChange={(e) => { setTerm(e.target.value) }} name="term" />
           {/* <i id="icon" class="search"></i> */}
         </div>
       </div>

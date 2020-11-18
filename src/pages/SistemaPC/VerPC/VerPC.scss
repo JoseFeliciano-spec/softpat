@@ -20,10 +20,9 @@
   &:focus {
     outline: none !important;
   }
-  & input {
-    border: 1px solid $font-dark;
+  input {
+    border: 1px solid $font-dark!important;
     position: absolute;
-    /* z-index: 0; */
     width: 450px;
     height: 60px;
     border-radius: 15px;
@@ -34,24 +33,16 @@
     &:focus {
       outline: none !important;
     }
-    /*  &:focus {
-      outline: none;
-      & + .search {
-        transform: perspective(400px) rotateY(89deg);
-        padding: 3px 0;
-        opacity: 0;
-      }
-    } */
   }
 }
 @media (prefers-color-scheme: dark) {
   .search-box {
     background: $background-secondary-dark;
-    border: 1px solid $font-ligth;
+    border: 0!important;
     color: white;
-    /* box-shadow: 0px !important; */
-    & input {
-      border: 1px solid $font-ligth;
+    box-shadow: none !important;
+    input {
+      border: 3px solid $font-ligth!important;
       color: white;
       background: $background-secondary-dark;
     }
