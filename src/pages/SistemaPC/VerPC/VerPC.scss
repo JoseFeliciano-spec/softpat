@@ -6,6 +6,18 @@
   box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75) !important;
 }
 
+.card-top-ver-pc{
+  height: 0;
+  padding-top: 56.25%;
+  background-color: $background-light;
+}
+@media (prefers-color-scheme: dark) {
+  .card-top-ver-pc{
+    background-color: $background-dark;
+  } 
+}
+
+
 .search-box {
   display: flex;
   width: 450px;

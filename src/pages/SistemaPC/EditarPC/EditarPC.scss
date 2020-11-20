@@ -1,5 +1,17 @@
 @import "../../../scss/index.scss";
 
+.card-top-editar-pc{
+  height: 0;
+  padding-top: 56.25%;
+  background-color: $background-light;
+}
+@media (prefers-color-scheme: dark) {
+  .card-top-editar-pc{
+    background-color: $background-dark;
+  } 
+}
+
+
 .item-actualizar-pc {
   color: $font-dark;
   &:focus {

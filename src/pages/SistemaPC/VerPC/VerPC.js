@@ -158,7 +158,7 @@ function Image(props) {
 
     <CardMedia
       component="div"
-      className={classes.media}
+      className="card-top-ver-pc"
       image={bannerUrl}
       title={link.image}
     />
