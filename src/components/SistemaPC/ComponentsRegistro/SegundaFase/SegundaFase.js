@@ -3,6 +3,7 @@ import "./SegundaFase.scss";
 import { useDropzone } from 'react-dropzone';
 import NoImage from '../../../../assets/png/no-image.png';
 import { toast } from "react-toastify";
+import imageCompression from 'browser-image-compression';
 
 export default function SegundaFase(props) {
 
@@ -12,6 +13,13 @@ export default function SegundaFase(props) {
   const [banner, setBanner] = useState(null); */
   /* console.log(dataFormPC); */
   /* Drop */
+
+  const options = {
+    maxSizeMB: 1,
+    maxWidthOrHeight: 430,
+    useWebWorker: true
+  }
+
   const onDrop = useCallback(acceptedFile => {
     let ok = true;
     const file = acceptedFile[0];
@@ -19,13 +27,19 @@ export default function SegundaFase(props) {
       ok = false;
       toast.warning("El archivo seleccionado no es una imagen");
     }
-    if (file.size > 750000) {
+    if (file.size > 1000000) {
       ok = false;
-      toast.warning("El archivo excede el máximo de 750kb");
+      toast.warning("El archivo excede el máximo de 1mb");
     }
     if (ok) {
-      setFile(file);
-      setBanner(URL.createObjectURL(file));
+      imageCompression(file, options)
+        .then(function (compressedFile) {
+          setFile(compressedFile);
+          setBanner(URL.createObjectURL(compressedFile));
+        })
+        .catch(function (error) {
+          toast.warning("No se pudo comprimir");
+        });
     }
   });
 

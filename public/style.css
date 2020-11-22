@@ -1,5 +1,11 @@
 body {
   margin: 0;
+  background: #ffff;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #202020;
+  }
 }
 /* .fondo {
   background: #ffff;

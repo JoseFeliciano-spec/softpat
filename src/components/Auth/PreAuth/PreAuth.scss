@@ -5,10 +5,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  background-color: $background-light;
   &__spinner {
     color: $background-principal !important;
     width: 110px !important;
     height: 110px !important;
+  }
+}
+@media(prefers-color-scheme: dark) {
+  .pre-auth{
+    background-color: $background-dark;
   }
 }
