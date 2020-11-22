@@ -10,6 +10,17 @@
   }
 }
 
+.chip-bar-cliente{
+  background-color: #F29400!important;
+  font-size: 1rem!important;
+  color: $font-ligth!important;
+}
+.chip-bar{
+  background-color: #F50057!important;
+  font-size: 1rem!important;
+  color: $font-ligth!important;
+}
+
 @media (prefers-color-scheme: dark) {
   .MuiBottomNavigationAction-root {
     color: $font-ligth !important;

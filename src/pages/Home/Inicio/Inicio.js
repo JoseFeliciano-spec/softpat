@@ -12,7 +12,8 @@ export default function Inicio(props) {
     return (
         <div>
             <h1 className="text-center mt-4">
-                Inicio (Bienvenido {user.displayName})
+                Inicio <br />
+                <span>(Bienvenido {user.displayName})</span>
             </h1>
 
 

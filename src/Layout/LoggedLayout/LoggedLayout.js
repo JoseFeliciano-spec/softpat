@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import "./LoggedLayout.scss";
 import AppBar from "@material-ui/core/AppBar";
@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import firebase from "../../utils/Firebase";
-import "firebase/auth";
+import "firebase/firestore";
 import MenuLeft from "../../components/MenuLeft";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "../../routes/Routes";
@@ -18,7 +18,7 @@ import Routes from "../../routes/Routes";
 import Avatar from '@material-ui/core/Avatar';
 import DialogUser from '../../components/DialogUser';
 import { ToastContainer } from "react-toastify";
-
+import Chip from '@material-ui/core/Chip';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -34,17 +34,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const salir = () => {
+/* const salir = () => {
   firebase.auth().signOut();
-};
+}; */
+
+const db = firebase.firestore(firebase);
 
 export default function LoggedLayout(props) {
   const { user } = props;
 
   const classes = useStyles();
 
+  const [admin, setAdmin] = useState(false);
   const [value, setValue] = React.useState("/");
-
   const [boton, setBoton] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -59,6 +61,19 @@ export default function LoggedLayout(props) {
   const handlerDialogUser = () => {
     setOpen(true);
   };
+
+  const existeAdmin = async () => {
+    await db.collection("admin").doc(user.uid)
+      .onSnapshot(function (value) {
+        setAdmin(value.exists);
+      });
+    /* console.log(hola.exists); */
+  };
+
+  useEffect(() => {
+    existeAdmin();
+  }, [])
+
 
   return (
     <Router>
@@ -77,6 +92,8 @@ export default function LoggedLayout(props) {
             <Typography variant="h6" className="titulo">
               SoftPat
             </Typography>
+            {admin ? <Chip label="Administrador" className="chip-bar" /> :
+              <Chip label="Cliente" className="chip-bar-cliente" />}
             <Button color="inherit" className="boton-bar" onClick={handlerDialogUser}>
               {!user.photoURL ?
                 <Avatar className="avatar-app">

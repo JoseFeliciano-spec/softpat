@@ -39,17 +39,28 @@ export default function DialogUser(props) {
     /* Imagenes */
     const [file, setFile] = useState(null);
 
-    const [estado, setEstado] = useState(trueOrFalse());
+    const [estado, setEstado] = useState(true);
 
     const [banner, setBanner] = useState(null);
     const onDrop = useCallback(acceptedFile => {
+
+        let ok = true;
         const file = acceptedFile[0];
-        /* console.log(file); */
-        setFile(file);
-        setBanner(URL.createObjectURL(file));
-        setUpload(file).then(() => {
-            updateUpload();
-        });
+        if (!file.type === 'image/jpeg') {
+            ok = false;
+            toast.warning("El archivo seleccionado no es una imagen");
+        }
+        if (file.size > 750000) {
+            ok = false;
+            toast.warning("El archivo excede el máximo de 750kb");
+        }
+        if (ok) {
+            setFile(file);
+            setBanner(URL.createObjectURL(file));
+            setUpload(file).then(() => {
+                updateUpload();
+            });
+        }
     });
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -144,7 +155,7 @@ export default function DialogUser(props) {
                                 <TextField
                                     label="Editar Su Nombre"
                                     //id="outlined-margin-dense"
-                                    disabled={estado.nombre}
+                                    disabled={estado}
                                     name="nombre"
                                     className="mt-4 color-input-r w-100"
                                     variant="outlined"
@@ -157,9 +168,7 @@ export default function DialogUser(props) {
                                     aria-label="Editar nombre"
                                     onClick={
                                         () => {
-                                            setEstado(
-                                                { ...estado, nombre: !estado.nombre }
-                                            )
+                                            setEstado(!estado)
                                         }
                                     }
                                 >
@@ -195,8 +204,3 @@ export default function DialogUser(props) {
 }
 
 
-function trueOrFalse() {
-    return {
-        nombre: false,
-    }
-}
