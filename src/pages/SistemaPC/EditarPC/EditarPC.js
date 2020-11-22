@@ -22,23 +22,6 @@ import Switch from '@material-ui/core/Switch';
 const db = firebase.firestore(firebase);
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
   avatar: {
     backgroundColor: red[500],
   },
@@ -55,7 +38,7 @@ export default function EditarPC() {
   moment.locale();
   /* Para obtener sistemaPC */
   const getSistemaPc = async () => {
-    const querySnapshot = await db.collection("sistemapc").onSnapshot((querySnapshot) => {
+    await db.collection("sistemapc").onSnapshot((querySnapshot) => {
       const docs = []
       querySnapshot.forEach(doc => {
         /* console.log(doc.data()); */
@@ -165,7 +148,7 @@ export default function EditarPC() {
   );
 }
 function Image(props) {
-  const classes = useStyles();
+  /* const classes = useStyles(); */
   const { link } = props;
   const [bannerUrl, setBannerUrl] = useState(null);
 

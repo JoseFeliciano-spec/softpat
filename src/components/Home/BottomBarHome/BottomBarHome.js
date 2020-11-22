@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./BottomBarHome.scss";
 import AppBar from "@material-ui/core/AppBar";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { withRouter } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -21,6 +20,9 @@ function BottomBarHome() {
         break;
       case "nosotros":
         history.push("/nosotros");
+        break;
+      default:
+        history.push("/");
         break;
     }
   };

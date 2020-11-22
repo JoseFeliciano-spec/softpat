@@ -9,8 +9,8 @@ import Typewriter from 'typewriter-effect';
 //import { toast } from "react-toastify";
 //import { setEmail, getEmail } from "../../../utils/ema../../../utils/email";
 import BackgroundSlider from 'react-background-slider'
-import firebase from '../../../utils/Firebase';
-import "firebase/storage";
+/* import firebase from '../../../utils/Firebase';
+import "firebase/storage"; */
 import inicio from '../../../assets/jpg/inicio.jpg';
 import inicio2 from '../../../assets/jpg/inicio2.jpg';
 import inicio3 from '../../../assets/jpg/inicio3.jpg';

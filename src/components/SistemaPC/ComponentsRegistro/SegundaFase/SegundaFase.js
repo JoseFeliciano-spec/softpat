@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import "./SegundaFase.scss";
 import { useDropzone } from 'react-dropzone';
 import NoImage from '../../../../assets/png/no-image.png';
@@ -7,7 +7,7 @@ import imageCompression from 'browser-image-compression';
 
 export default function SegundaFase(props) {
 
-  const { dataFormPC, setDataFormPC, file, setFile, banner, setBanner } = props;
+  const { /* dataFormPC, setDataFormPC, */ /* file  */ setFile, banner, setBanner } = props;
 
   /* const [file, setFile] = useState(null);
   const [banner, setBanner] = useState(null); */

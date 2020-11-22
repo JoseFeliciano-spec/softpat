@@ -10,6 +10,16 @@
   }
 }
 
+.texto-router{
+  color: $font-dark;
+}
+@media(prefers-color-scheme: dark) {
+  .texto-router{
+    color: $font-ligth;
+  }
+}
+
+
 .chip-bar-cliente{
   background-color: #F29400!important;
   font-size: 1rem!important;

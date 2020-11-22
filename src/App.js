@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Auth from "./pages/Auth";
 import "./App.scss";
 import firebase from "./utils/Firebase";
@@ -8,26 +8,7 @@ import PreAuth from "./components/Auth/PreAuth";
 import { ToastContainer } from "react-toastify";
 import LoggedLayout from "./layout/LoggedLayout";
 
-const Login = () => {
-  return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignContent: "center",
-        flexDirection: "column",
-      }}
-    >
-      <h1>Usuario logueado</h1>
-      <button onClick={salir}>Cerrar sesión</button>
-    </div>
-  );
-};
 
-const salir = () => {
-  firebase.auth().signOut();
-};
 
 function App() {
 

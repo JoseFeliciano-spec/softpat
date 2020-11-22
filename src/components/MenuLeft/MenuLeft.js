@@ -6,7 +6,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+/* import FavoriteIcon from "@material-ui/icons/Favorite"; */
 import HomeIcon from '@material-ui/icons/Home';
 import { withRouter } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -31,6 +31,10 @@ function MenuLeft(props) {
         history.push("/sistema-computo");
         setBoton(!boton);
         break;
+      default:
+        history.push("/");
+        setBoton(!boton);
+        break;
     }
   };
 
@@ -52,8 +56,8 @@ function MenuLeft(props) {
             button
             onClick={handlerCambiar}
             id="sistema-computo"
-            /* component={NavLink}
-            to="/sistema-computo" */
+          /* component={NavLink}
+          to="/sistema-computo" */
           >
             <ListItemIcon>
               <ComputerIcon className="theme-icon" />

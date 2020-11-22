@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./DialogEditarPC.scss";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -49,43 +49,43 @@ export default function DialogEditarPC(props) {
   const { open, setOpen, id, setId } = props;
   const [dataFormPC, setDataFormPC] = useState(dataRegistoPC);
   /* const [data, setData] = useState({}); */
-  const [date, setDate] = useState(new Date());
+  /* const [date, setDate] = useState(new Date()); */
   const [file, setFile] = useState(null);
   const [banner, setBanner] = useState(null);
   const [isLoad, setIsLoad] = useState(false);
   /* const [okUse, setOkUse] = useState(true); */
 
-  
-  const getDatosSistemaPC = ()=>{
-      if(id != ""){
-        let ok = {}
-        db.collection("sistemapc").doc(id)
-          .onSnapshot(function(doc) {
-              ok = doc.data();
-              console.log(" datos: ", ok);
-              setDataFormPC({...doc.data()});
-          });
-        
-      }
+
+  const getDatosSistemaPC = () => {
+    if (id != "") {
+      let ok = {}
+      db.collection("sistemapc").doc(id)
+        .onSnapshot(function (doc) {
+          ok = doc.data();
+          console.log(" datos: ", ok);
+          setDataFormPC({ ...doc.data() });
+        });
+
+    }
   };
 
   useEffect(() => {
-    if(id != ""){
-      console.log(id);
+    if (id != "") {
+      /* console.log(id); */
       getDatosSistemaPC();
     }
   }, [id])
 
-  const uploadImage = (fileName)=>{
+  const uploadImage = (fileName) => {
     const ref = firebase.storage().ref().child(`sistemapc/${fileName}`);
 
     return ref.put(file);
   };
 
 
-  async function onSubmit(){
+  async function onSubmit() {
     let ok = true;
-    
+
     /* await db.collection("sistemapc").where("noSerie", "==", dataFormPC.noSerie)
       .get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc) {
@@ -95,51 +95,51 @@ export default function DialogEditarPC(props) {
         });
      }) */
 
-    if(dataFormPC.tipoComputadora == ''){ ok = false;}
+    if (dataFormPC.tipoComputadora === '') { ok = false; }
 
-    if(dataFormPC.nombreEquipo == ''){ok = false;}
+    if (dataFormPC.nombreEquipo === '') { ok = false; }
 
-    if(dataFormPC.memoriaRam == ''){ok = false;}
+    if (dataFormPC.memoriaRam === '') { ok = false; }
 
-    if(dataFormPC.resolucionPantalla == ''){ok = false;}
+    if (dataFormPC.resolucionPantalla === '') { ok = false; }
 
-    if(dataFormPC.discoDuro == ''){ok = false;}
+    if (dataFormPC.discoDuro === '') { ok = false; }
 
-    if(dataFormPC.marcaProcesador == ''){ok = false;}
+    if (dataFormPC.marcaProcesador === '') { ok = false; }
 
     /* if(dataFormPC.fechaEquipo == null){ok = false;} */
 
-    if(dataFormPC.marca == ''){ok = false;}
+    if (dataFormPC.marca === '') { ok = false; }
 
-    if(dataFormPC.marcaGrafica == ''){ok = false;}
+    if (dataFormPC.marcaGrafica === '') { ok = false; }
 
-    if(dataFormPC.estado == ''){ok = false;}
+    if (dataFormPC.estado === '') { ok = false; }
 
-    if(dataFormPC.modelo == ''){ok = false;}
+    if (dataFormPC.modelo === '') { ok = false; }
 
     /* if(dataFormPC.noSerie == ''){ok = false;} */
 
-    if(dataFormPC.owned == ''){ok = false;}
+    if (dataFormPC.owned === '') { ok = false; }
 
-    if(dataFormPC.lectordvd == ''){ok = false;}
+    if (dataFormPC.lectordvd === '') { ok = false; }
 
-    if(dataFormPC.puertohdmi == ''){ok = false;}
+    if (dataFormPC.puertohdmi === '') { ok = false; }
 
-    if(dataFormPC.puertousb == ''){ok = false;}
+    if (dataFormPC.puertousb === '') { ok = false; }
 
-    if(dataFormPC.observaciones == ''){ok = false;}
+    if (dataFormPC.observaciones === '') { ok = false; }
 
     /* if(file == null){ok = false;} */
 
-    if(!ok){
+    if (!ok) {
       toast.warning("Hay campos vacios, revisa todos los campos.");
     }
-    
-    if(ok){
-      if(file !== null){
+
+    if (ok) {
+      if (file !== null) {
         setIsLoad(true);
         toast.success("Subiendo los datos y la imagen...");
-        uploadImage(dataFormPC.image).then(()=>{
+        uploadImage(dataFormPC.image).then(() => {
           db.collection("sistemapc")
             .doc(id)
             .update({
@@ -163,43 +163,43 @@ export default function DialogEditarPC(props) {
               /* image: fileName, */
               observaciones: dataFormPC.observaciones
             })
-            .then(()=>{
+            .then(() => {
               toast.success("Se ha actualizado correctamente.");
               setBanner(null);
               setIsLoad(false);
             });
         })
-      }else{
+      } else {
         setIsLoad(true);
         toast.success("Subiendo los datos...");
         db.collection("sistemapc")
-            .doc(id)
-            .update({
-              /* registrador: user.displayName, */
-              /* estadoVigente: true, */
-              tipoComputadora: dataFormPC.tipoComputadora,
-              nombreEquipo: dataFormPC.nombreEquipo,
-              memoriaRam: dataFormPC.memoriaRam,
-              resolucionPantalla: dataFormPC.resolucionPantalla,
-              discoDuro: dataFormPC.discoDuro,
-              marcaProcesador: dataFormPC.marcaProcesador,
-              /* fechaEquipo: dataFormPC.fechaEquipo, */
-              marca: dataFormPC.marca,
-              marcaGrafica: dataFormPC.marcaGrafica,
-              estado: dataFormPC.estado,
-              modelo: dataFormPC.modelo,
-              owned: dataFormPC.owned,
-              lectordvd: dataFormPC.lectordvd,
-              puertohdmi: dataFormPC.puertohdmi,
-              puertousb: dataFormPC.puertousb,
-              /* image: fileName, */
-              observaciones: dataFormPC.observaciones
-            })
-            .then(()=>{
-              toast.success("Se ha actualizado correctamente.");
-              /* setBanner(null); */
-              setIsLoad(false);
-            });
+          .doc(id)
+          .update({
+            /* registrador: user.displayName, */
+            /* estadoVigente: true, */
+            tipoComputadora: dataFormPC.tipoComputadora,
+            nombreEquipo: dataFormPC.nombreEquipo,
+            memoriaRam: dataFormPC.memoriaRam,
+            resolucionPantalla: dataFormPC.resolucionPantalla,
+            discoDuro: dataFormPC.discoDuro,
+            marcaProcesador: dataFormPC.marcaProcesador,
+            /* fechaEquipo: dataFormPC.fechaEquipo, */
+            marca: dataFormPC.marca,
+            marcaGrafica: dataFormPC.marcaGrafica,
+            estado: dataFormPC.estado,
+            modelo: dataFormPC.modelo,
+            owned: dataFormPC.owned,
+            lectordvd: dataFormPC.lectordvd,
+            puertohdmi: dataFormPC.puertohdmi,
+            puertousb: dataFormPC.puertousb,
+            /* image: fileName, */
+            observaciones: dataFormPC.observaciones
+          })
+          .then(() => {
+            toast.success("Se ha actualizado correctamente.");
+            /* setBanner(null); */
+            setIsLoad(false);
+          });
       }
     }
   }
@@ -208,13 +208,13 @@ export default function DialogEditarPC(props) {
     setOpen(!open);
     setActiveStep(0);
   };
-    
-  const getStepContent = (stepIndex)=> {
+
+  const getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
         return <PrimeraFase banner={banner} setBanner={setBanner} file={file} setFile={setFile} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
       case 1:
-        return <SegundaFase banner={banner} setBanner={setBanner} file={file} setFile={setFile} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
+        return <SegundaFase banner={banner} setBanner={setBanner} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
       case 2:
         return <TerceraFase banner={banner} setBanner={setBanner} file={file} setFile={setFile} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
       default:
@@ -258,46 +258,46 @@ export default function DialogEditarPC(props) {
               ))}
             </Stepper>
             <div>
-              
+
+              <div>
+                <Typography
+                  className={classes.instructions}
+                  component={"span"}
+                  variant={"body2"}
+                >
+                  {getStepContent(activeStep)}
+                </Typography>
                 <div>
-                  <Typography
-                    className={classes.instructions}
-                    component={"span"}
-                    variant={"body2"}
+                  <Button
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    /* disabled={isLoad == true} */
+                    className="buttonColorBack"
                   >
-                    {getStepContent(activeStep)}
-                  </Typography>
-                  <div>
-                    <Button
-                      disabled={activeStep === 0}
-                      onClick={handleBack}
-                      /* disabled={isLoad == true} */
-                      className="buttonColorBack"
-                    >
-                      Atrás
+                    Atrás
                     </Button>
-                    {activeStep === steps.length - 1 ? 
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className="mt-3 mb-3"
-                        disabled={isLoad == true}
-                        onClick={onSubmit}
-                      >
-                        Actualizar
+                  {activeStep === steps.length - 1 ?
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className="mt-3 mb-3"
+                      disabled={isLoad == true}
+                      onClick={onSubmit}
+                    >
+                      Actualizar
                       </Button> :
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className="mt-3 mb-3"
-                        onClick={handleNext}
-                      >
-                        Siguiente
-                      </Button> 
-                    }
-                  </div>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className="mt-3 mb-3"
+                      onClick={handleNext}
+                    >
+                      Siguiente
+                      </Button>
+                  }
                 </div>
-              
+              </div>
+
             </div>
           </div>
         </DialogContent>

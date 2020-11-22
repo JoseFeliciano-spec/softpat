@@ -97,21 +97,21 @@ export default function RegistroPC(props) {
 
     if (dataFormPC.marcaGrafica === '') { ok = false; }
 
-    if (dataFormPC.estado == '') { ok = false; }
+    if (dataFormPC.estado === '') { ok = false; }
 
-    if (dataFormPC.modelo == '') { ok = false; }
+    if (dataFormPC.modelo === '') { ok = false; }
 
-    if (dataFormPC.noSerie == '') { ok = false; }
+    if (dataFormPC.noSerie === '') { ok = false; }
 
-    if (dataFormPC.owned == '') { ok = false; }
+    if (dataFormPC.owned === '') { ok = false; }
 
-    if (dataFormPC.lectordvd == '') { ok = false; }
+    if (dataFormPC.lectordvd === '') { ok = false; }
 
-    if (dataFormPC.puertohdmi == '') { ok = false; }
+    if (dataFormPC.puertohdmi === '') { ok = false; }
 
-    if (dataFormPC.puertousb == '') { ok = false; }
+    if (dataFormPC.puertousb === '') { ok = false; }
 
-    if (dataFormPC.observaciones == '') { ok = false; }
+    if (dataFormPC.observaciones === '') { ok = false; }
 
     if (file == null) { ok = false; }
 
@@ -167,7 +167,7 @@ export default function RegistroPC(props) {
       case 0:
         return <PrimeraFase banner={banner} setBanner={setBanner} file={file} setFile={setFile} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
       case 1:
-        return <SegundaFase banner={banner} setBanner={setBanner} file={file} setFile={setFile} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
+        return <SegundaFase banner={banner} setBanner={setBanner} setFile={setFile} />;
       case 2:
         return <TerceraFase banner={banner} setBanner={setBanner} file={file} setFile={setFile} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
       default:
@@ -187,9 +187,9 @@ export default function RegistroPC(props) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
+  /* const handleReset = () => {
     setActiveStep(0);
-  };
+  }; */
 
   return (
     <div>

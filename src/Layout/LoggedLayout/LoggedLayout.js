@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import "./LoggedLayout.scss";
 import AppBar from "@material-ui/core/AppBar";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+/* import FavoriteIcon from "@material-ui/icons/Favorite"; */
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -46,7 +46,7 @@ export default function LoggedLayout(props) {
   const classes = useStyles();
 
   const [admin, setAdmin] = useState(false);
-  const [value, setValue] = React.useState("/");
+  /* const [value, setValue] = React.useState("/"); */
   const [boton, setBoton] = useState(false);
   const [open, setOpen] = useState(false);
 

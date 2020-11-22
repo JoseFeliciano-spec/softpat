@@ -3,7 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
+/* import RestoreIcon from "@material-ui/icons/Restore"; */
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import CreateIcon from "@material-ui/icons/Create";
@@ -20,7 +20,7 @@ const db = firebase.firestore(firebase);
 
 function BottomBarPC(props) {
   /* Const user pasado por props */
-  const {user} = props;
+  const { user } = props;
   /* Abrir y cerrar el componente registro */
   const [open, setOpen] = useState(false);
 
@@ -35,11 +35,11 @@ function BottomBarPC(props) {
 
 
   /* Saber si el usuario es admin o no */
-  const existeAdmin = async()=>{
+  const existeAdmin = async () => {
     await db.collection("admin").doc(user.uid)
-    .onSnapshot(function(value){
-      setAdminZone(value.exists);
-    });
+      .onSnapshot(function (value) {
+        setAdminZone(value.exists);
+      });
   }
 
   /* Cambiar de barra */
@@ -77,20 +77,20 @@ function BottomBarPC(props) {
             id="verBarraPC"
             icon={<VisibilityIcon />}
           />
-          {adminZone&&(
+          {adminZone && (
             <BottomNavigationAction
-            label="Editar"
-            id="editarBarraPC"
-            onClick={handlerCambiar}
-            icon={<CreateIcon />}
+              label="Editar"
+              id="editarBarraPC"
+              onClick={handlerCambiar}
+              icon={<CreateIcon />}
             />
           )}
-          {adminZone&&(
+          {adminZone && (
             <BottomNavigationAction
-            label="Crear"
-            onClick={handlerOpen}
-            icon={<AddCircleIcon />}
-          />
+              label="Crear"
+              onClick={handlerOpen}
+              icon={<AddCircleIcon />}
+            />
           )}
         </BottomNavigation>
       </AppBar>
@@ -106,7 +106,7 @@ function BottomBarPC(props) {
         draggable
         pauseOnHover
       />
-      {adminZone&&(
+      {adminZone && (
         <RegistroPC open={open} user={user} setOpen={setOpen} />
       )}
     </div>
