@@ -1,9 +1,9 @@
 import React from "react";
 import "./Nosotros.scss";
-import Weymar from '../../../assets/jpeg/weymar.jpeg';
-import Anderson from '../../../assets/png/anderson.PNG';
-import Isaac from '../../../assets/jpeg/issac.jpeg';
-import Jesus from '../../../assets/jpeg/jesus.jpeg';
+import Weymar from '../../../assets/jpg/weymar.jpg';
+import Anderson from '../../../assets/png/anderson.png';
+import Isaac from '../../../assets/jpg/issac.jpg';
+import Jesus from '../../../assets/jpg/jesus.jpg';
 import Jose from '../../../assets/jpg/jose.jpg';
 
 export default function Nosotros() {

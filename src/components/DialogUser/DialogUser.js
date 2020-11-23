@@ -14,7 +14,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import Avatar from '@material-ui/core/Avatar';
 import { useDropzone } from 'react-dropzone';
 import SendIcon from '@material-ui/icons/Send';
-
+import imageCompression from 'browser-image-compression';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -42,6 +42,13 @@ export default function DialogUser(props) {
     const [estado, setEstado] = useState(true);
 
     const [banner, setBanner] = useState(null);
+
+    const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 430,
+        useWebWorker: true
+    }
+
     const onDrop = useCallback(acceptedFile => {
 
         let ok = true;
@@ -50,16 +57,23 @@ export default function DialogUser(props) {
             ok = false;
             toast.warning("El archivo seleccionado no es una imagen");
         }
-        if (file.size > 750000) {
+        if (file.size > 1000000) {
             ok = false;
-            toast.warning("El archivo excede el máximo de 750kb");
+            toast.warning("El archivo excede el máximo de 1mb");
         }
         if (ok) {
-            setFile(file);
-            setBanner(URL.createObjectURL(file));
-            setUpload(file).then(() => {
-                updateUpload();
-            });
+            imageCompression(file, options)
+                .then(function (compressedFile) {
+                    setFile(compressedFile);
+                    setBanner(URL.createObjectURL(compressedFile));
+                    setUpload(compressedFile).then(() => {
+                        updateUpload();
+                    });
+                })
+                .catch(function (error) {
+                    toast.warning("No se pudo comprimir");
+                });
+
         }
     });
 
@@ -109,7 +123,7 @@ export default function DialogUser(props) {
             })
             .then(() => {
                 toast.success("Se ha actualizado el nombre.");
-                /* setOpen(!open);                */
+                setEstado(!estado);
             });
     }
 

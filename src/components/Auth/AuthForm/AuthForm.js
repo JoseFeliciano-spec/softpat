@@ -48,7 +48,7 @@ export default function AuthForm() {
                   <h1 className="text-center mb-3">
                     <Typewriter
                       options={{
-                        strings: ['Bienvenidos a SoftPat', 'SoftPat Es Seguro', 'SoftPat Es Confiable', 'Descuento del 20%', 'Gracias Profe Mario'],
+                        strings: ['Bienvenidos a SoftPat', 'SoftPat Es Seguro', 'SoftPat Es Confiable', 'Descuento del 20%', 'Gracias Profe Mario', 'Gracias Profe Victor', 'Gracias Profe Cristian'],
                         autoStart: true,
                         loop: true,
                       }}
