@@ -7,7 +7,7 @@ import imageCompression from 'browser-image-compression';
 
 export default function SegundaFase(props) {
 
-  const { /* dataFormPC, setDataFormPC, */ /* file  */ setFile, banner, setBanner } = props;
+  const { setFile, banner, setBanner } = props;
 
   /* const [file, setFile] = useState(null);
   const [banner, setBanner] = useState(null); */

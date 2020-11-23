@@ -165,7 +165,7 @@ export default function DialogEditarPC(props) {
             })
             .then(() => {
               toast.success("Se ha actualizado correctamente.");
-              setBanner(null);
+              setFile(null);
               setIsLoad(false);
             });
         })
@@ -197,7 +197,7 @@ export default function DialogEditarPC(props) {
           })
           .then(() => {
             toast.success("Se ha actualizado correctamente.");
-            /* setBanner(null); */
+
             setIsLoad(false);
           });
       }
@@ -205,6 +205,7 @@ export default function DialogEditarPC(props) {
   }
 
   const handlerOpen = () => {
+    setBanner(null);
     setOpen(!open);
     setActiveStep(0);
   };
@@ -214,7 +215,7 @@ export default function DialogEditarPC(props) {
       case 0:
         return <PrimeraFase banner={banner} setBanner={setBanner} file={file} setFile={setFile} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
       case 1:
-        return <SegundaFase banner={banner} setBanner={setBanner} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
+        return <SegundaFase setFile={setFile} banner={banner} setBanner={setBanner} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
       case 2:
         return <TerceraFase banner={banner} setBanner={setBanner} file={file} setFile={setFile} dataFormPC={dataFormPC} setDataFormPC={setDataFormPC} />;
       default:
@@ -234,9 +235,9 @@ export default function DialogEditarPC(props) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
+  /* const handleReset = () => {
     setActiveStep(0);
-  };
+  }; */
 
   return (
     <div>

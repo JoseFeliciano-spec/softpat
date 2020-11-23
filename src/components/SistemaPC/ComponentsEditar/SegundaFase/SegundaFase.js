@@ -16,7 +16,7 @@ export default function SegundaFase(props) {
   /* console.log(dataFormPC); */
   /* Drop */
 
-  const options = {
+  const optiones = {
     maxSizeMB: 1,
     maxWidthOrHeight: 430,
     useWebWorker: true
@@ -34,12 +34,11 @@ export default function SegundaFase(props) {
       toast.warning("El archivo excede el máximo de 1mb");
     }
     if (ok) {
-      imageCompression(file, options)
+      imageCompression(file, optiones)
         .then(function (compressedFile) {
           setFile(compressedFile);
           setBanner(URL.createObjectURL(compressedFile));
-        })
-        .catch(function (error) {
+        }).catch(function (error) {
           toast.warning("No se pudo comprimir");
         });
     }

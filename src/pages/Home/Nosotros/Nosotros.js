@@ -1,7 +1,7 @@
 import React from "react";
 import "./Nosotros.scss";
 import Weymar from '../../../assets/jpg/weymar.jpg';
-import Anderson from '../../../assets/png/anderson.png';
+import Anderson from '../../../assets/png/anderson.PNG';
 import Isaac from '../../../assets/jpg/issac.jpg';
 import Jesus from '../../../assets/jpg/jesus.jpg';
 import Jose from '../../../assets/jpg/jose.jpg';
